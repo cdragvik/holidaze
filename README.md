@@ -1,2 +1,8 @@
-# holidaze
-Project exam 2: A newly launched accommodation booking site called Holidaze has approached you to develop a brand new front end for their application. (1)The customer-facing side of the website where users can book holidays at a venue, and (2) admin-facing side of the website where users can register and manage venues and bookings at those venues.
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
