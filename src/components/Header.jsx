@@ -34,11 +34,11 @@ const Navigation = styled.nav`
 export default function Header() {
     return ( 
         <NavBar>
-            <LogoImg src={Logo}/>
+            <a href="/"><LogoImg src={Logo}/></a>
             <Navigation>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a>Login</a></li>
+                    <li><a href="/login">Login</a></li>
                 </ul>
             </Navigation>
         </NavBar>
