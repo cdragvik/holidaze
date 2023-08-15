@@ -10,13 +10,37 @@ const LogoImg = styled.img`
     padding: 20px;
     display: flex;
     margin: auto;
-
 `
+
+const Navigation = styled.nav`
+    ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        margin-right: 20px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+`;
 
 export default function Header() {
     return ( 
         <NavBar>
             <LogoImg src={Logo}/>
+            <Navigation>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a>Login</a></li>
+                </ul>
+            </Navigation>
         </NavBar>
-    )
+    );
 }
