@@ -12,11 +12,12 @@ const VenuePage = () => {
         .then((response) => response.json())  // Corrected syntax
         .then((parsed) => setVenue(parsed));  // Corrected syntax
     }, []);
-  
+
     return (
       <Layout>
-        <h1>Venue page</h1>
-        <p>{venue?.title}</p>
+        <h1>{venue?.name}</h1>
+        <img src={venue?.media[0]} height="200px"></img>
+        <p></p>
 
       </Layout>
     );
