@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 const CardContainer = styled.div`
   width: 300px;
   border-radius: 8px;
@@ -35,21 +36,14 @@ const StarIcon = styled.span`
   margin-right: 4px;
 `;
 
-const CardPrice = styled.p`
-  font-size: 1.1rem;
-`;
-
 const VenueCard = ({ imageSrc, title, rating, price, city, country }) => (
   <CardContainer>
     <CardImage src={imageSrc} alt={title} />
     <CardContent>
       <CardTitle>{title}</CardTitle>
-      <div>
-        <StarIcon>★</StarIcon>
-        {rating}
-      </div>
+      <div><StarIcon>★</StarIcon>{rating}</div>
       <p>{city}, {country}</p>
-      <CardPrice>${price} /night</CardPrice>
+      <p>${price} /night</p>
     </CardContent>
   </CardContainer>
 );
