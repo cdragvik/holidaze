@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import Card from "../components/VenueCard"; // Make sure to import the correct component name
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 const ContentContainer = styled.div`
   display: grid;
@@ -13,7 +14,7 @@ const ContentContainer = styled.div`
   padding: 20px;
 `;
 
-const CardWrapper = styled.div`
+const CardWrapper = styled(Link)`
   display: flex;
   justify-content: center;
 `;
@@ -63,17 +64,18 @@ const Home = () => {
   return (
     <Layout>
 
-        <Heading>Your Perfect Getaway Awaits</Heading>
+      <Heading>Your Perfect Getaway Awaits</Heading>
 
       <SearchBar
         type="text"
         placeholder="Search venues..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+        onChange={(e) => setSearchTerm(e.target.value)}/>
+
+
       <ContentContainer>
         {filteredVenues.map((venue) => (
-          <CardWrapper key={venue.id}>
+          <CardWrapper key={venue.id} to={`/venues/${venue.id}`}>
             <Card
               imageSrc={venue.media[0]}
               city={venue.location.city}
@@ -81,10 +83,12 @@ const Home = () => {
               title={venue.name}
               rating={venue.rating}
               price={venue.price}
+              id={venue.id}
             />
           </CardWrapper>
         ))}
       </ContentContainer>
+
     </Layout>
   );
 };

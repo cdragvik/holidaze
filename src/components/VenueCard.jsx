@@ -36,7 +36,7 @@ const StarIcon = styled.span`
   margin-right: 4px;
 `;
 
-const VenueCard = ({ imageSrc, title, rating, price, city, country }) => (
+const VenueCard = ({ imageSrc, title, rating, price, city, country, id }) => (
   <CardContainer>
     <CardImage src={imageSrc} alt={title} />
     <CardContent>
@@ -44,6 +44,7 @@ const VenueCard = ({ imageSrc, title, rating, price, city, country }) => (
       <div><StarIcon>★</StarIcon>{rating}</div>
       <p>{city}, {country}</p>
       <p>${price} /night</p>
+      <p>{id}</p>
     </CardContent>
   </CardContainer>
 );
