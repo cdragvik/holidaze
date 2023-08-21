@@ -83,7 +83,6 @@ const Home = () => {
               title={venue.name}
               rating={venue.rating}
               price={venue.price}
-              id={venue.id}
             />
           </CardWrapper>
         ))}

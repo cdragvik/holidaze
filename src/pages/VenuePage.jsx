@@ -59,8 +59,8 @@ const Feature = styled.span`
 `;
 
 const Location = styled.div`
-  margin-top: 20px;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  padding-bottom: 20px;
 `;
 
 const VenuePage = () => {
@@ -85,6 +85,7 @@ const VenuePage = () => {
       <PageContainer>
 
         <Title>{venue?.name}</Title>
+        <Location>{venue?.location.city}, {venue?.location.country}</Location>
         
         <VenueInfoContainer>
 
@@ -113,10 +114,6 @@ const VenuePage = () => {
             {venue?.meta.breakfast && <Feature>Breakfast</Feature>}
             {venue?.meta.pets && <Feature>Pets Allowed</Feature>}
           </FeatureList>
-          
-          <Location>
-            Location: {venue?.location.city}, {venue?.location.country}
-          </Location>
 
         </VenueInfoContainer>
         
