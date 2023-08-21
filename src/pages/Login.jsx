@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { styled } from 'styled-components';
+import { login } from '../api/auth';
 
 
 const StyledForm = styled.form`
@@ -36,45 +37,30 @@ const StyledButton = styled.button`
 `;
 
 const LoginForm = () => {
-    const [loginEmail, setLoginEmail] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
-  
-    const handleLogin = async (event) => {
-      event.preventDefault();
-  
-      const loginData = {
-        email: loginEmail,
-        password: loginPassword,
-      };
-  
-      try {
-        const response = await fetch('https://api.noroff.dev/api/v1/holidaze/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(loginData),
-        });
-  
-        if (response.ok) {
-          const responseData = await response.json();
-          // Handle successful login and store token in localStorage
-          console.log('Login successful:', responseData);
-  
-          // Redirect to the home page
-          window.location.href = '/';
-        } else {
-          // Handle login error
-          console.error('Login failed');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    const loginData = {
+      email: loginEmail,
+      password: loginPassword,
     };
-  
-    return (
-      <Layout>
-        <StyledForm onSubmit={handleLogin}>
+
+    try {
+      await login(loginData); // Call the login function from api.js
+      console.log("Login successful!"); // Debugging line
+      // Redirect to the home page
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
+  return (
+    <Layout>
+      <StyledForm onSubmit={handleLogin}>
 
           <h1>Login</h1>
 
