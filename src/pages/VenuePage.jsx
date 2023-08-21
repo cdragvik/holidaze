@@ -42,24 +42,23 @@ const InfoRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
 `;
 
 const FeatureList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  font-size: 0.9rem;
+  padding-bottom: 20px;
 `;
 
 const Feature = styled.span`
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #D8C4B6;
 `;
 
 const Location = styled.div`
-  font-size: 1.5rem;
   padding-bottom: 20px;
 `;
 
