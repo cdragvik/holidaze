@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Layout from '../components/Layout';
 
 const LoginForm = () => {
   const [loginEmail, setLoginEmail] = useState('');
@@ -35,7 +36,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <label>Email:</label>
@@ -46,7 +47,7 @@ const LoginForm = () => {
       </form>
 
       <p>Dont have an account? Register here:</p><a href='/register'><button>Register</button></a>
-    </div>
+    </Layout>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Layout from '../components/Layout';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -41,7 +42,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
+    <Layout>
+        
       <h1>Register</h1>
       <form onSubmit={handleRegister}>
         <label>Username:</label>
@@ -58,7 +60,7 @@ const RegisterForm = () => {
       </form>
 
       <p>Already have an account?</p><a href='/login'><button>Login</button></a>
-    </div>
+    </Layout>
   );
 };
 
