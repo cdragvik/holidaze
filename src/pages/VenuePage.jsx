@@ -2,52 +2,66 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../components/Layout";
-import Calendar from "react-calendar"; // Import the calendar component
-import "react-calendar/dist/Calendar.css"; // Import the default styles for the calendar
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 `;
 
+const VenueInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
 const Title = styled.h1`
   font-size: 2rem;
-  margin-bottom: 10px;
+`;
+
+const ImageContainer = styled.div`
+  max-height: 500px;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Image = styled.img`
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const Description = styled.p`
-  font-size: 1rem;
-  margin-top: 20px;
-`;
 
 const InfoRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0;
   font-size: 0.9rem;
 `;
 
 const FeatureList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
-`;
-
-const Feature = styled.span`
   font-size: 0.9rem;
 `;
 
+const Feature = styled.span`
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const Location = styled.div`
+  margin-top: 20px;
+  font-size: 1rem;
+`;
 
 const VenuePage = () => {
   const { id } = useParams();
@@ -61,9 +75,7 @@ const VenuePage = () => {
 
   const getBookedDates = () => {
     if (venue && venue.bookings) {
-      return venue.bookings.map((booking) => {
-        return new Date(booking.dateFrom);
-      });
+      return venue.bookings.map((booking) => new Date(booking.dateFrom));
     }
     return [];
   };
@@ -71,34 +83,45 @@ const VenuePage = () => {
   return (
     <Layout>
       <PageContainer>
+
         <Title>{venue?.name}</Title>
-        <Image src={venue?.media[0]} alt={venue?.name} />
-        <Description>{venue?.description}</Description>
-        <InfoRow>
-          <span>Price:</span>
-          <span>${venue?.price} /night</span>
-        </InfoRow>
-        <InfoRow>
-          <span>Max Guests:</span>
-          <span>{venue?.maxGuests}</span>
-        </InfoRow>
-        <InfoRow>
-          <span>Rating:</span>
-          <span>{venue?.rating} ★</span>
-        </InfoRow>
-        <FeatureList>
-          {venue?.meta.wifi && <Feature>WiFi</Feature>}
-          {venue?.meta.parking && <Feature>Parking</Feature>}
-          {venue?.meta.breakfast && <Feature>Breakfast</Feature>}
-          {venue?.meta.pets && <Feature>Pets Allowed</Feature>}
-        </FeatureList>
-        <InfoRow>
-          <span>Location:</span>
-          <span>
-            {venue?.location.city}, {venue?.location.country}
-          </span>
-        </InfoRow>
+        
+        <VenueInfoContainer>
+
+          <ImageContainer>
+            <Image src={venue?.media[0]} alt={venue?.name} />
+          </ImageContainer>
+
+          <p>{venue?.description}</p>
+
+          <InfoRow>
+            <span>Price:</span>
+            <span>${venue?.price} /night</span>
+          </InfoRow>
+          <InfoRow>
+            <span>Max Guests:</span>
+            <span>{venue?.maxGuests}</span>
+          </InfoRow>
+          <InfoRow>
+            <span>Rating:</span>
+            <span>{venue?.rating} ★</span>
+          </InfoRow>
+
+          <FeatureList>
+            {venue?.meta.wifi && <Feature>WiFi</Feature>}
+            {venue?.meta.parking && <Feature>Parking</Feature>}
+            {venue?.meta.breakfast && <Feature>Breakfast</Feature>}
+            {venue?.meta.pets && <Feature>Pets Allowed</Feature>}
+          </FeatureList>
+          
+          <Location>
+            Location: {venue?.location.city}, {venue?.location.country}
+          </Location>
+
+        </VenueInfoContainer>
+        
         <Calendar bookedDates={getBookedDates()} />
+      
       </PageContainer>
     </Layout>
   );
