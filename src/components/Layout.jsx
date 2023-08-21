@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Header from "./Header"
 
 const Layout = (props) => {
@@ -5,6 +6,7 @@ const Layout = (props) => {
         <>
             <Header></Header>
                 {props.children}
+            <Footer></Footer>
         </>
     )
 }
