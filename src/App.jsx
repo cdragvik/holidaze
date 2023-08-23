@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import VenuePage from "./pages/VenuePage";
 import LoginForm from "./pages/Login";
 import RegisterForm from "./pages/Register";
+import ProfilePage from "./pages/Profile";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/venues/:id" element={<VenuePage></VenuePage>} />
         <Route path="/login" element={<LoginForm></LoginForm>}></Route>
         <Route path="/register" element={<RegisterForm></RegisterForm>}></Route>
+        <Route path="/profile/:name" element={<ProfilePage />} ></Route>
       </Routes>
     </Router>
   );
