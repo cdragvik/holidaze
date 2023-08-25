@@ -90,7 +90,6 @@ async function getVenuesByProfile(name) {
       if (user.venueManager) {
         getVenuesByProfile(name)
           .then(data => {        
-            console.log('Fetched Venues:', data);  // Debug line
           setVenues(data);
         })
         .catch(error => console.error('Error fetching venues:', error));
@@ -104,9 +103,6 @@ async function getVenuesByProfile(name) {
 
 
   const handleVenueCreation = (newVenue) => {
-    // Send newVenue data to the server for creation
-    // Update venues state or perform necessary actions
-    console.log('New Venue Data:', newVenue);
   };
 
   if (!profile) {

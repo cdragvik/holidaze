@@ -56,8 +56,6 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
     };
   
     const [newVenue, setNewVenue] = useState(initialVenueState);
-
-    console.log('Request Payload:', newVenue);
   
     const handleVenueInputChange = (field, value) => {
         if (field === 'price' || field === 'maxGuests') {
