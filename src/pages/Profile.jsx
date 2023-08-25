@@ -60,12 +60,20 @@ const ProfilePage = () => {
     return data;
 }
   
- async function getVenuesByProfile(name) {
-    const url = `${BASE_URL}/profiles/${name}/venues`;
-    const response = await fetch(`${BASE_URL}/profiles/${name}/venues`);
-    const data = await response.json();
-    return data;
+async function getVenuesByProfile(name) {
+  const ManagerUrl = `${BASE_URL}/profiles/${name}/venues`;
+  const token = localStorage.getItem("token");  // Fetch the token from local storage
+  
+  const response = await fetch(ManagerUrl, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  
+  const data = await response.json();
+  return data;
 }
+
 
   useEffect(() => {
     // Load profile data from local storage or your authentication context
@@ -81,8 +89,11 @@ const ProfilePage = () => {
       }
       if (user.venueManager) {
         getVenuesByProfile(name)
-          .then(data => setVenues(data))
-          .catch(error => console.error('Error fetching venues:', error));
+          .then(data => {        
+            console.log('Fetched Venues:', data);  // Debug line
+          setVenues(data);
+        })
+        .catch(error => console.error('Error fetching venues:', error));
       }
     }
   }, [name]);
