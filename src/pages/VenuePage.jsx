@@ -144,29 +144,6 @@ const VenuePage = () => {
             </div>
           )}
         
-        
-        <h3>Book this Venue</h3>
-        <DatePicker
-  selected={startDate}
-  onChange={(date) => setStartDate(date)}
-  selectsStart
-  startDate={startDate}
-  endDate={endDate}
-  minDate={new Date()}
-  excludeDates={bookedDates}
-/>
-<DatePicker
-  selected={endDate}
-  onChange={(date) => setEndDate(date)}
-  selectsEnd
-  startDate={startDate}
-  endDate={endDate}
-  minDate={startDate}
-  excludeDates={bookedDates}
-/>
-
-        <SubmitButton onClick={handleBooking}>Book Now</SubmitButton>   
-        
           {isEditing ? (
             <form onSubmit={handleEdit}>
               <Card>
@@ -214,11 +191,41 @@ const VenuePage = () => {
             <SubmitButton onClick={handleDelete}>Delete Venue</SubmitButton>
             <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
           </>
-        ) : !localStorage.getItem("token") ? (
+        ) : null}
+        
+        
+        {!localStorage.getItem("token") ? (
           <SubmitButton onClick={() => window.location.replace("/login")}>
             Want to book? Login
           </SubmitButton>
         ) : null}
+
+        {localStorage.getItem("token")? (
+          <>
+             <h3>Book this Venue</h3>
+                <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                minDate={new Date()}
+                excludeDates={bookedDates}
+              />
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                excludeDates={bookedDates}
+              />
+              
+              <SubmitButton onClick={handleBooking}>Book Now</SubmitButton>   </>
+
+        ): null}
+
         
 
         </VenueInfoContainer>
