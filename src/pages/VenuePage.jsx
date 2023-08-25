@@ -85,22 +85,17 @@ const VenuePage = () => {
  
   const profile = load('profile'); 
 
+  console.log(venue?._owner)
+  console.log(profile)
+
   useEffect(() => {
-    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`)
+    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true`)
       .then((response) => response.json())
       .then((parsed) => setVenue(parsed));
   }, [id]);
 
-  const getBookedDates = () => {
-    if (venue && venue.bookings) {
-      return venue.bookings.map((booking) => new Date(booking.dateFrom));
-    }
-    return [];
-  };
-
 
   const handleDelete = async () => {
-    // API call to delete venue
     const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
       method: 'DELETE',
       headers: {
@@ -113,6 +108,8 @@ const VenuePage = () => {
       // Show an error message
     }
   };
+
+
 
   return (
     <Layout>
@@ -149,16 +146,22 @@ const VenuePage = () => {
             {venue?.meta.pets && <Feature>Pets Allowed</Feature>}
           </FeatureList>
 
+
+          {venue?.owner && (
+            <div>
+              <h3>Owner Information</h3>
+              <p>Name: {venue.owner.name}</p>
+              <p>Email: {venue.owner.email}</p>
+            </div>
+          )}
+
+
         </VenueInfoContainer>
 
-        {profile && profile.venueManager && (
-          <>
-            <ActionButton onClick={handleDelete}>Delete Venue</ActionButton>
-
-          </>
-        )}
         
-        <Calendar bookedDates={getBookedDates()} />
+        {profile?.email === venue?.owner?.email && (
+  <ActionButton onClick={handleDelete}>Delete Venue</ActionButton>
+)}
       
       </PageContainer>
     </Layout>

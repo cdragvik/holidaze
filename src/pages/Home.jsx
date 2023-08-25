@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import Card from "../components/VenueCard"; // Make sure to import the correct component name
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+import VenueCard from "../components/VenueCard";
 
 export const ContentContainer = styled.div`
   display: grid;
@@ -76,7 +77,7 @@ const Home = () => {
       <ContentContainer>
         {filteredVenues.map((venue) => (
           <CardWrapper key={venue.id} to={`/venues/${venue.id}`}>
-            <Card
+            <VenueCard
               imageSrc={venue.media[0]}
               city={venue.location.city}
               country={venue.location.country}
