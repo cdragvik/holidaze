@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { load } from "../api/storage";
 
 const PageContainer = styled.div`
   max-width: 800px;
@@ -62,9 +63,27 @@ const Location = styled.div`
   padding-bottom: 20px;
 `;
 
+
+const ActionButton = styled.button`
+  background-color: #4f709c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #213555;
+  }
+`;
+
 const VenuePage = () => {
   const { id } = useParams();
   const [venue, setVenue] = useState();
+ 
+  const profile = load('profile'); 
 
   useEffect(() => {
     fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`)
@@ -77,6 +96,22 @@ const VenuePage = () => {
       return venue.bookings.map((booking) => new Date(booking.dateFrom));
     }
     return [];
+  };
+
+
+  const handleDelete = async () => {
+    // API call to delete venue
+    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("token")}` // Assuming the token is stored in localStorage
+      }
+    });
+    if (response.ok) {
+      // Redirect or update the UI to show that the venue has been deleted
+    } else {
+      // Show an error message
+    }
   };
 
   return (
@@ -115,6 +150,13 @@ const VenuePage = () => {
           </FeatureList>
 
         </VenueInfoContainer>
+
+        {profile && profile.venueManager && (
+          <>
+            <ActionButton onClick={handleDelete}>Delete Venue</ActionButton>
+
+          </>
+        )}
         
         <Calendar bookedDates={getBookedDates()} />
       
