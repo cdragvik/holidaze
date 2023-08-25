@@ -2,23 +2,34 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { BASE_URL } from '../api/Constants';
 
+const Card = styled.div`
+  background-color: #F5EFE7;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+
+`;
+
 const FormGroup = styled.div`
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Label = styled.label`
   font-weight: bold;
+  color: #213555;
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 80%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 `;
 
 const TextArea = styled.textarea`
-  width: 100%;
+  width: 80%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -31,6 +42,20 @@ const CheckboxGroup = styled.div`
 
 const CheckboxLabel = styled.label`
   margin-right: 10px;
+`;
+
+const SubmitButton = styled.button`
+  background-color: #4F709C;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #213555;
+  }
 `;
 
 
@@ -109,6 +134,7 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
   
 
   return (
+    <Card>
     <form onSubmit={handleSubmitVenue}>
 
       <h2>Create a New Venue</h2>
@@ -226,10 +252,11 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
       </FormGroup>
       
       <FormGroup>
-        <button type="submit">Create Venue</button>
+        <SubmitButton type="submit">Create Venue</SubmitButton>
       </FormGroup>
     
     </form>
+    </Card>
   );
 };
 

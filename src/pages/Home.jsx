@@ -14,7 +14,7 @@ const ContentContainer = styled.div`
   padding: 20px;
 `;
 
-const CardWrapper = styled(Link)`
+export const CardWrapper = styled(Link)`
   display: flex;
   justify-content: center;
 `;

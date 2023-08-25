@@ -2,16 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { BASE_URL, getBookingsByProfile, getVenuesByProfile } from '../api/Constants';
+import { BASE_URL } from '../api/Constants';
 import { load } from '../api/storage';
 import UpdateAvatarPage from './UpdateProfile';
 import Layout from '../components/Layout';
 import VenueCreationForm from '../components/CreateVenue';
+import { CardWrapper } from './Home';
+import VenueCard from '../components/VenueCard';
 
 const PageContainer = styled.div`
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const LeftColumn = styled.div`
+  flex: 0 0 30%;
+`;
+
+const RightColumn = styled.div`
+  padding-top: 30px;
+  flex: 0 0 65%;
 `;
 
 const ProfileHeader = styled.h1`
@@ -60,27 +73,24 @@ const ProfilePage = () => {
     return data;
 }
   
-async function getVenuesByProfile(name) {
-  const ManagerUrl = `${BASE_URL}/profiles/${name}/venues`;
-  const token = localStorage.getItem("token");  // Fetch the token from local storage
-  
-  const response = await fetch(ManagerUrl, {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  });
-  
-  const data = await response.json();
-  return data;
-}
-
+  async function getVenuesByProfile(name) {
+    const ManagerUrl = `${BASE_URL}/profiles/${name}/venues`;
+    const token = localStorage.getItem("token");  // Fetch the token from local storage
+    
+    const response = await fetch(ManagerUrl, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    const data = await response.json();
+    return data;
+  }
 
   useEffect(() => {
-    // Load profile data from local storage or your authentication context
     const user = load('profile');
     setProfile(user);
 
-    // Fetch bookings and venues if the user is a customer or venue manager
     if (user && (user.venueManager || user.customer)) {
       if (user.customer) {
         getBookingsByProfile(name)
@@ -101,8 +111,8 @@ async function getVenuesByProfile(name) {
     setShowUpdateAvatarPage(true);
   };
 
-
   const handleVenueCreation = (newVenue) => {
+
   };
 
   if (!profile) {
@@ -112,11 +122,23 @@ async function getVenuesByProfile(name) {
   return (
     <Layout>
     <PageContainer>
+      
+      <LeftColumn>
       <ProfileHeader>Welcome, {profile?.name}!</ProfileHeader>
       <ProfileEmail>Email: {profile?.email}</ProfileEmail>
       {profile?.avatar && <AvatarImage src={profile?.avatar} alt="Profile Avatar" />}
 
       <Button onClick={handleUpdateAvatar}>Update Avatar</Button>
+
+      {showUpdateAvatarPage && (
+        <UpdateAvatarPage profile={profile} onUpdateAvatar={() => setShowUpdateAvatarPage(false)} />
+      )}
+      </LeftColumn>
+
+      <RightColumn>
+      {profile?.venueManager && (
+          <VenueCreationForm onSubmitVenue={handleVenueCreation} />
+        )}
 
       {bookings.length > 0 && profile.customer && (
         <div>
@@ -136,19 +158,19 @@ async function getVenuesByProfile(name) {
           <h2>Your Managed Venues:</h2>
           <ul>
             {venues.map(venue => (
-              <li key={venue.id}>{venue.name}</li>
+              <CardWrapper key={venue.id} to={`/venues/${venue.id}`}>
+              <VenueCard               imageSrc={venue.media[0]}
+              city={venue.location.city}
+              country={venue.location.country}
+              title={venue.name}
+              rating={venue.rating}
+              price={venue.price}>{venue.name}</VenueCard></CardWrapper>
             ))}
           </ul>
         </div>
       )}
-
-{profile?.venueManager && (
-          <VenueCreationForm onSubmitVenue={handleVenueCreation} />
-        )}
-
-      {showUpdateAvatarPage && (
-        <UpdateAvatarPage profile={profile} onUpdateAvatar={() => setShowUpdateAvatarPage(false)} />
-      )}
+      
+      </RightColumn>
 </PageContainer>
 </Layout>
 
