@@ -18,6 +18,12 @@ const PageContainer = styled.div`
   justify-content: space-between;
 `;
 
+const VenuesContainer = styled.div`
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 20px;
+`
+
 const LeftColumn = styled.div`
   flex: 0 0 30%;
 `;
@@ -156,7 +162,7 @@ const ProfilePage = () => {
       {venues.length > 0 && profile.venueManager && (
         <div>
           <h2>Your Managed Venues:</h2>
-          <ul>
+          <VenuesContainer>
             {venues.map(venue => (
               <CardWrapper key={venue.id} to={`/venues/${venue.id}`}>
               <VenueCard               imageSrc={venue.media[0]}
@@ -166,7 +172,7 @@ const ProfilePage = () => {
               rating={venue.rating}
               price={venue.price}>{venue.name}</VenueCard></CardWrapper>
             ))}
-          </ul>
+          </VenuesContainer>
         </div>
       )}
       

@@ -37,7 +37,7 @@ const StyledButton = styled.button`
 `;
 
 const LoginForm = () => {
-
+  
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -50,7 +50,7 @@ const LoginForm = () => {
     };
 
     try {
-      await login(loginData);
+      await login(loginData); 
       window.location.href = "/";
 
     } catch (error) {

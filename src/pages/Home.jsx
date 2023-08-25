@@ -4,7 +4,7 @@ import Card from "../components/VenueCard"; // Make sure to import the correct c
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
   display: grid;
   justify-content: center;
   gap: 20px;
