@@ -1,7 +1,7 @@
 // api.js
 
 import { BASE_URL } from "./Constants";
-import { save } from "./storage";
+
 
 export async function register(profile) {
   const registerURL = BASE_URL + "/auth/register";
@@ -33,7 +33,6 @@ export async function login(profile) {
       });
   
       const responseData = await response.json();
-      console.log("response data:", responseData); // Debugging line
   
       if (response.ok) {
         const { accessToken, ...user } = responseData;
@@ -45,7 +44,7 @@ export async function login(profile) {
     } catch (error) {
       console.error("Error during login:", error);
     }
-  }
+}
 
 export function logout() {
   localStorage.removeItem("token");

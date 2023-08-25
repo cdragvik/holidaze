@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getBookingsByProfile, getVenuesByProfile } from '../api/Constants';
+import { BASE_URL, getBookingsByProfile, getVenuesByProfile } from '../api/Constants';
 import { load } from '../api/storage';
 import UpdateAvatarPage from './UpdateProfile';
 import Layout from '../components/Layout';
+import VenueCreationForm from '../components/CreateVenue';
 
 const PageContainer = styled.div`
   max-width: 800px;
@@ -52,6 +53,20 @@ const ProfilePage = () => {
   const [venues, setVenues] = useState([]);
   const [showUpdateAvatarPage, setShowUpdateAvatarPage] = useState(false);
 
+   async function getBookingsByProfile(name) {
+    const url = `${BASE_URL}/profiles/${name}/bookings`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
+  
+ async function getVenuesByProfile(name) {
+    const url = `${BASE_URL}/profiles/${name}/venues`;
+    const response = await fetch(`${BASE_URL}/profiles/${name}/venues`);
+    const data = await response.json();
+    return data;
+}
+
   useEffect(() => {
     // Load profile data from local storage or your authentication context
     const user = load('profile');
@@ -74,6 +89,13 @@ const ProfilePage = () => {
 
   const handleUpdateAvatar = () => {
     setShowUpdateAvatarPage(true);
+  };
+
+
+  const handleVenueCreation = (newVenue) => {
+    // Send newVenue data to the server for creation
+    // Update venues state or perform necessary actions
+    console.log('New Venue Data:', newVenue);
   };
 
   if (!profile) {
@@ -112,6 +134,10 @@ const ProfilePage = () => {
           </ul>
         </div>
       )}
+
+{profile?.venueManager && (
+          <VenueCreationForm onSubmitVenue={handleVenueCreation} />
+        )}
 
       {showUpdateAvatarPage && (
         <UpdateAvatarPage profile={profile} onUpdateAvatar={() => setShowUpdateAvatarPage(false)} />

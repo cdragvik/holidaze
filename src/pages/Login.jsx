@@ -37,6 +37,7 @@ const StyledButton = styled.button`
 `;
 
 const LoginForm = () => {
+
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -49,10 +50,9 @@ const LoginForm = () => {
     };
 
     try {
-      await login(loginData); // Call the login function from api.js
-      console.log("Login successful!"); // Debugging line
-      // Redirect to the home page
+      await login(loginData);
       window.location.href = "/";
+
     } catch (error) {
       console.error("Login failed:", error);
     }

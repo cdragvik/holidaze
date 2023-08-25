@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { styled } from 'styled-components';
+import { BASE_URL } from '../api/Constants';
 
 const StyledForm = styled.form`
   display: flex;
@@ -54,7 +55,7 @@ const RegisterForm = () => {
     };
 
     try {
-      const response = await fetch('https://api.noroff.dev/api/v1/holidaze/auth/register', {
+      const response = await fetch(BASE_URL+'/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
