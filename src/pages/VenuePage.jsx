@@ -131,12 +131,16 @@ const VenuePage = () => {
           ) : null}
         
           
-          {profile?.email === venue?.owner?.email && (
-            <>
-              <SubmitButton onClick={handleDelete}>Delete Venue</SubmitButton>
-              <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
-            </>
-          )}
+        {profile?.email === venue?.owner?.email ? (
+          <>
+            <SubmitButton onClick={handleDelete}>Delete Venue</SubmitButton>
+            <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
+          </>
+        ) : !localStorage.getItem("token") ? (
+          <SubmitButton onClick={() => window.location.replace("/login")}>
+            Want to book? Login
+          </SubmitButton>
+        ) : null}
         
 
         </VenueInfoContainer>
