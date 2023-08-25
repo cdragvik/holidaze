@@ -1,63 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { BASE_URL } from '../api/Constants';
-
-const Card = styled.div`
-  background-color: #F5EFE7;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  font-weight: bold;
-  color: #213555;
-`;
-
-const Input = styled.input`
-  width: 80%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
-
-const TextArea = styled.textarea`
-  width: 80%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
-
-const CheckboxGroup = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const CheckboxLabel = styled.label`
-  margin-right: 10px;
-`;
-
-const SubmitButton = styled.button`
-  background-color: #4F709C;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #213555;
-  }
-`;
-
+import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, SubmitButton, TextArea } from '../styles/Forms';
 
 const VenueCreationForm = ({ onSubmitVenue }) => {
     const initialVenueState = {

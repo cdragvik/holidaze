@@ -1,77 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import Layout from "../components/Layout";
 import { load } from "../api/storage";
-
-const PageContainer = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
-const VenueInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-`;
-
-const ImageContainer = styled.div`
-  max-height: 500px;
-  max-width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: auto;
-`;
-
-const InfoRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const FeatureList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
-
-const Feature = styled.span`
-  padding: 4px 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #D8C4B6;
-`;
-
-const Location = styled.div`
-  padding-bottom: 20px;
-`;
-
-const ActionButton = styled.button`
-  background-color: #4f709c;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #213555;
-  }
-`;
+import { Card, FormGroup, Input, Label, SubmitButton, TextArea } from "../styles/Forms";
+import { Feature, FeatureList, Image, ImageContainer, InfoRow, Location, PageContainer, Title, VenueInfoContainer } from "../styles/Venue";
 
 const VenuePage = () => {
   const { id } = useParams();
@@ -119,9 +51,6 @@ const VenuePage = () => {
     }
   };
 
-
-  console.log(venue)
-
   return (
     <Layout>
       <PageContainer>
@@ -159,21 +88,56 @@ const VenuePage = () => {
             </div>
           )}
 
+        
           {isEditing ? (
             <form onSubmit={handleEdit}>
-              <input type="text" name="name" defaultValue={venue?.name} />
-              <input type="text" name="description" defaultValue={venue?.description} />
-              <button type="submit">Update Venue</button>
-              <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+              <Card>
+                <FormGroup>
+                  <Label>Name:</Label>
+                  <Input type="text" name="name" defaultValue={venue?.name} />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Description:</Label>
+                  <TextArea type="text" name="description" defaultValue={venue?.description} />
+              </FormGroup>
+              <FormGroup>
+                  <Label>Images:</Label>
+                  <Input type="text" name="media" defaultValue={venue?.media}></Input>
+                </FormGroup>
+                <FormGroup>
+                  <Label>Price:</Label>
+                  <Input type="number" name="price" defaultValue={venue.price}></Input>
+                </FormGroup>
+                <FormGroup>
+                  <Label>Max Guests:</Label>
+                  <Input type="number" name="maxGuests" defaultValue={venue.maxGuests}></Input>
+                </FormGroup>
+                <FormGroup>
+                  <Label>Address:</Label>
+                  <Input type="text" name="address" defaultValue={venue.location.address}></Input>
+                </FormGroup>
+                <FormGroup>
+                  <Label>City:</Label>
+                  <Input type="text" name="city" defaultValue={venue.location.city}></Input>
+                </FormGroup>
+                <FormGroup>
+                  <Label>Country:</Label>
+                  <Input type="text" name="country" defaultValue={venue.location.country}></Input>
+                </FormGroup>  
+                  <SubmitButton type="submit">Update Venue</SubmitButton>
+                  <SubmitButton type="button" onClick={() => setIsEditing(false)}>Cancel</SubmitButton>
+            </Card>
             </form>
           ) : null}
-
+        
+          
           {profile?.email === venue?.owner?.email && (
             <>
-              <ActionButton onClick={handleDelete}>Delete Venue</ActionButton>
-              <ActionButton onClick={() => setIsEditing(true)}>Edit Venue</ActionButton>
+              <SubmitButton onClick={handleDelete}>Delete Venue</SubmitButton>
+              <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
             </>
           )}
+        
 
         </VenueInfoContainer>
       </PageContainer>
