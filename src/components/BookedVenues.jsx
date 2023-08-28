@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { VenuesContainer } from "../styles/Profile";
+import { CardWrapper } from "../pages/Home";
+import { CardContainer, CardContent, CardImage, CardTitle } from "../styles/Cards";
 
 function BookedVenues() {
   const [bookings, setBookings] = useState([]);
@@ -44,26 +47,27 @@ function BookedVenues() {
   return (
     <div>
       <h2>Your Bookings</h2>
-      <ul>
+      <VenuesContainer>
         {bookings.map((booking, index) => (
-                  <li key={index}>
-                  <div>
-                    <strong>Start Date:</strong> {booking.dateFrom}
-                  </div>
-                  <div>
-                    <strong>End Date:</strong> {booking.dateTo}
-                  </div>
-                  <div>
-                    <strong>Number of Guests:</strong> {booking.guests}
-                  </div>
-                  <div>
-                    <strong>Venue:</strong> {booking.venue?.name || "N/A"}
-                  </div>
-                </li>
+            <CardWrapper key={index}>
+                <CardContainer>
+                    <CardImage src={booking.venue?.media} ></CardImage>
+                    <CardContent>
+                        <CardTitle>{booking.venue?.name}</CardTitle>
+                        <p>From: {booking.dateFrom}</p>
+                        <p>To: {booking.dateTo}</p>
+                        <p>Number of guests: {booking.guests}</p>
+  
+                    </CardContent>
+                </CardContainer>
+            </CardWrapper>
+      
+
         ))}
-      </ul>
+    </VenuesContainer>
     </div>
   );
 }
+
 
 export default BookedVenues;
