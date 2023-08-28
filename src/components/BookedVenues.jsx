@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 
 function BookedVenues() {
   const [bookings, setBookings] = useState([]);
-
+  
   useEffect(() => {
     const fetchBookings = async () => {
-        const url = "https://api.noroff.dev/api/v1/holidaze/bookings?_customer=true&_venue=true";
-
+      const url = "https://api.noroff.dev/api/v1/holidaze/bookings?_customer=true&_venue=true";
       const token = localStorage.getItem("token");
-
+      const userProfile = JSON.parse(localStorage.getItem("profile") || '{}');
+      const currentUserName = userProfile.name || 'UNKNOWN_USER';
+    
+      console.log("Token:", token);
+      console.log("Current User Name:", currentUserName);
+  
       try {
         const response = await fetch(url, {
           method: "GET",
@@ -16,29 +20,33 @@ function BookedVenues() {
             "Authorization": `Bearer ${token}`
           }
         });
-
+    
         if (!response.ok) {
           console.error(`Server responded with status: ${response.status}`);
           return;
         }
-
+    
         const data = await response.json();
-        setBookings(data);
+        const userBookings = data.filter(booking => booking.customer.name === currentUserName);
+        console.log('Filtered user bookings:', userBookings);
+    
+        setBookings(userBookings);
+    
       } catch (error) {
         console.error("Error fetching bookings:", error);
       }
     };
-
+  
     fetchBookings();
   }, []);
-
+  
+  
   return (
     <div>
       <h2>Your Bookings</h2>
       <ul>
         {bookings.map((booking, index) => (
                   <li key={index}>
-    
                   <div>
                     <strong>Start Date:</strong> {booking.dateFrom}
                   </div>
