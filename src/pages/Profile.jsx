@@ -6,6 +6,7 @@ import VenueCreationForm from '../components/CreateVenue';
 import { PageContainer, RightColumn } from '../styles/Profile';
 import { DisplayVenues } from '../components/DisplayVenues';
 import ProfileInfo from '../components/ProfileInfo';
+import BookedVenues from '../components/BookedVenues';
 
 const ProfilePage = () => {
   const { name } = useParams();
@@ -34,8 +35,8 @@ const ProfilePage = () => {
         <RightColumn>
           {profile.venueManager && <VenueCreationForm />}
           {profile.venueManager && <DisplayVenues name={name} />}
-        
-        
+
+          <BookedVenues></BookedVenues>
         </RightColumn>
 
       </PageContainer>
