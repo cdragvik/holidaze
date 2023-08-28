@@ -11,7 +11,6 @@ const BookingForm = ({ bookedDates }) => {
     const bookingInfo = {
       dateFrom: startDate,
       dateTo: endDate,
-      guests: 1, // Or however you plan to handle guest numbers
     
     };
 
@@ -52,7 +51,7 @@ const BookingForm = ({ bookedDates }) => {
   excludeDates={bookedDates}
 />
 
-        <SubmitButton onClick={handleBooking}>Book Now</SubmitButton>  </> 
+<SubmitButton onClick={handleBooking}>Book Now</SubmitButton>  </> 
   );
 };
 
