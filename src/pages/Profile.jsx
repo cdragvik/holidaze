@@ -21,7 +21,7 @@ const ProfilePage = () => {
   if (!profile) {
     return <div>Loading profile...</div>;
   }
-
+  
   return (
     <Layout>
       <PageContainer>
@@ -34,6 +34,8 @@ const ProfilePage = () => {
         <RightColumn>
           {profile.venueManager && <VenueCreationForm />}
           {profile.venueManager && <DisplayVenues name={name} />}
+        
+        
         </RightColumn>
 
       </PageContainer>

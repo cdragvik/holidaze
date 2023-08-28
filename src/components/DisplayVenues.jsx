@@ -7,7 +7,6 @@ import { CardWrapper } from '../pages/Home';
 export const DisplayVenues = ({ name }) => {
   const [venues, setVenues] = useState([]);
 
-  // Fetch venues managed by profile
   async function getVenuesByProfile(name) {
     const url = `${BASE_URL}/profiles/${name}/venues`;
     const token = localStorage.getItem('token');
@@ -40,8 +39,7 @@ export const DisplayVenues = ({ name }) => {
               country={venue.location.country}
               title={venue.name}
               rating={venue.rating}
-              price={venue.price}
-            >
+              price={venue.price}>
               {venue.name}
             </VenueCard>
           </CardWrapper>
