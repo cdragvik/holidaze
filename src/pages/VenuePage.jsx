@@ -255,31 +255,43 @@ const VenuePage = () => {
         
 
         {localStorage.getItem("token") ? (
-        <>
-          <h3>Book this Venue</h3>
-         <CustomCalendar
-            onClickDay={(value) => handleCalendarClick(value)}
-            tileDisabled={({ date, view }) =>
-              view === "month" && isBooked(date)
-            }
-            tileClassName={tileClassName}
+  <>
+    {profile?.email !== venue?.owner?.email ? (
+      <>
+        <h3>Book this Venue</h3>
+        <CustomCalendar
+          onClickDay={(value) => handleCalendarClick(value)}
+          tileDisabled={({ date, view }) =>
+            view === "month" && isBooked(date)
+          }
+          tileClassName={tileClassName}
         />
-          <GuestsLabel>
-            Number of Guests: 
-            <GuestsInput 
-              type="number" 
-              value={numGuests} 
-              onChange={(e) => setNumGuests(e.target.value)} 
-              min="1" max={venue?.maxGuests}
-            />
-          </GuestsLabel>
-          
-          <SubmitButton onClick={handleBooking}>Confirm Booking</SubmitButton>
-          
-          {startDate && <div>Start Date: {startDate.toDateString()}</div>}
-          {endDate && <div>End Date: {endDate.toDateString()}</div>}
-        </>
-        ) : null}
+        <GuestsLabel>
+          Number of Guests: 
+          <GuestsInput 
+            type="number" 
+            value={numGuests} 
+            onChange={(e) => setNumGuests(e.target.value)} 
+            min="1" max={venue?.maxGuests}
+          />
+        </GuestsLabel>
+        
+        <SubmitButton onClick={handleBooking}>Confirm Booking</SubmitButton>
+        
+        {startDate && <div>Start Date: {startDate.toDateString()}</div>}
+        {endDate && <div>End Date: {endDate.toDateString()}</div>}
+      </>
+    ) : (
+      <div></div>
+    )}
+  </>
+) : null}
+
+
+
+
+
+
 
         </VenueInfoContainer>
       </PageContainer>
