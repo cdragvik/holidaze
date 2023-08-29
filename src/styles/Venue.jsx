@@ -100,3 +100,27 @@ export const CustomCalendar = styled(Calendar)`
     background-color: #4F709C !important;
   }
 `;
+
+export const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+
+  thead {
+    background-color: #f2f2f2;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+`;

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { load } from "../api/storage";
 import { Card, FormGroup, Input, Label, SubmitButton, TextArea } from "../styles/Forms";
-import { CustomCalendar, Feature, FeatureList, GuestsInput, GuestsLabel, Image, ImageContainer, InfoRow, Location, PageContainer, Title, VenueInfoContainer } from "../styles/Venue";
+import { CustomCalendar, Feature, FeatureList, GuestsInput, GuestsLabel, Image, ImageContainer, InfoRow, Location, PageContainer, StyledTable, Title, VenueInfoContainer } from "../styles/Venue";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -19,9 +19,10 @@ const VenuePage = () => {
   const profile = load('profile');
   const [selectingStartDate, setSelectingStartDate] = useState(true); // Determine what type of date is being selected
   const [numGuests, setNumGuests] = useState(1);
+  const [showBookings, setShowBookings] = useState(false);
 
   useEffect(() => {
-    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true`)
+    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true&_customer=true`)
       .then(response => response.json())
       .then(parsed => setVenue(parsed));
   }, 
@@ -29,10 +30,10 @@ const VenuePage = () => {
 
 
   useEffect(() => {
-    // Include '_bookings' in your query parameters to fetch booking details if public
-    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
+    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true&_customer=true`)
       .then(response => response.json())
       .then(parsed => {
+        console.log('Parsed data:', parsed);  // Log here
         setVenue(parsed);
         
         // If bookings are public, populate booked dates here
@@ -102,7 +103,7 @@ const VenuePage = () => {
     };
 
     
-  const response = await fetch('https://api.noroff.dev/api/v1/holidaze/bookings', {
+  const response = await fetch('https://api.noroff.dev/api/v1/holidaze/bookings?_owner=true&_bookings=true&_customer=true', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -233,6 +234,34 @@ const VenuePage = () => {
           <>
             <SubmitButton onClick={handleDelete}>Delete Venue</SubmitButton>
             <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
+          
+          {/* New Button to Show/Hide Bookings */}
+          <SubmitButton onClick={() => setShowBookings(!showBookings)}>
+              {showBookings ? "Hide Bookings" : "Show Bookings"}
+            </SubmitButton>
+            
+            {showBookings && (
+              <StyledTable>
+                <thead>
+                  <tr>
+                    <th>Number of Guests</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {venue?.bookings?.map((booking, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{booking.guests}</td>
+                        <td>{new Date(booking.dateFrom).toLocaleDateString()}</td>
+                        <td>{new Date(booking.dateTo).toLocaleDateString()}</td>
+                      </tr>
+                      );
+                    })}
+                </tbody>
+              </StyledTable>
+            )}
           </>
         ) : null}
         
