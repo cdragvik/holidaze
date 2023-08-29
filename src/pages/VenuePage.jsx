@@ -29,24 +29,26 @@ const VenuePage = () => {
 
 
   useEffect(() => {
-    fetch('https://api.noroff.dev/api/v1/holidaze/bookings', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem("token")}`
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      const allBookedDates = [];
-      data.forEach(booking => {
-        let currentDate = new Date(booking.dateFrom);
-        const endDate = new Date(booking.dateTo);
-        while (currentDate <= endDate) {
-          allBookedDates.push(new Date(currentDate));
-          currentDate.setDate(currentDate.getDate() + 1);
+    // Include '_bookings' in your query parameters to fetch booking details if public
+    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
+      .then(response => response.json())
+      .then(parsed => {
+        setVenue(parsed);
+        
+        // If bookings are public, populate booked dates here
+        if (parsed.bookings) {
+          const allBookedDates = [];
+          parsed.bookings.forEach(booking => {
+            let currentDate = new Date(booking.dateFrom);
+            const endDate = new Date(booking.dateTo);
+            while (currentDate <= endDate) {
+              allBookedDates.push(new Date(currentDate));
+              currentDate.setDate(currentDate.getDate() + 1);
+            }
+          });
+          setBookedDates(allBookedDates);
         }
       });
-      setBookedDates(allBookedDates);
-    });
   }, [id]);
 
   
@@ -236,19 +238,33 @@ const VenuePage = () => {
         
         
         {!localStorage.getItem("token") ? (
+          <>
+
+          <CustomCalendar
+          onClickDay={(value) => handleCalendarClick(value)}
+          tileDisabled={({ date, view }) =>
+            view === "month" && isBooked(date)
+          }
+          tileClassName={tileClassName}
+          />
+          
           <SubmitButton onClick={() => window.location.replace("/login")}>
             Want to book? Login
-          </SubmitButton>
+          </SubmitButton></>
         ) : null}
-
-
+        
 
         {localStorage.getItem("token") ? (
         <>
           <h3>Book this Venue</h3>
-          
-         
-            <GuestsLabel>
+         <CustomCalendar
+            onClickDay={(value) => handleCalendarClick(value)}
+            tileDisabled={({ date, view }) =>
+              view === "month" && isBooked(date)
+            }
+            tileClassName={tileClassName}
+        />
+          <GuestsLabel>
             Number of Guests: 
             <GuestsInput 
               type="number" 
@@ -257,21 +273,13 @@ const VenuePage = () => {
               min="1" max={venue?.maxGuests}
             />
           </GuestsLabel>
-
-          <CustomCalendar
-            onClickDay={(value) => handleCalendarClick(value)}
-            tileDisabled={({ date, view }) =>
-              view === "month" && isBooked(date)
-            }
-            tileClassName={tileClassName}
-          />
+          
           <SubmitButton onClick={handleBooking}>Confirm Booking</SubmitButton>
           
           {startDate && <div>Start Date: {startDate.toDateString()}</div>}
           {endDate && <div>End Date: {endDate.toDateString()}</div>}
         </>
         ) : null}
-        
 
         </VenueInfoContainer>
       </PageContainer>
