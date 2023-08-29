@@ -12,9 +12,6 @@ function BookedVenues() {
       const token = localStorage.getItem("token");
       const userProfile = JSON.parse(localStorage.getItem("profile") || '{}');
       const currentUserName = userProfile.name || 'UNKNOWN_USER';
-    
-      console.log("Token:", token);
-      console.log("Current User Name:", currentUserName);
   
       try {
         const response = await fetch(url, {
@@ -31,7 +28,6 @@ function BookedVenues() {
     
         const data = await response.json();
         const userBookings = data.filter(booking => booking.customer.name === currentUserName);
-        console.log('Filtered user bookings:', userBookings);
     
         setBookings(userBookings);
     
@@ -46,7 +42,7 @@ function BookedVenues() {
   
   return (
     <div>
-      <h2>Your Bookings</h2>
+      <h2>Your Bookings:</h2>
       <VenuesContainer>
         {bookings.map((booking, index) => (
             <CardWrapper key={index}>

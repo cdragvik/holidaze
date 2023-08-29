@@ -4,9 +4,9 @@ import Layout from "../components/Layout";
 import { load } from "../api/storage";
 import { Card, FormGroup, Input, Label, SubmitButton, TextArea } from "../styles/Forms";
 import { CustomCalendar, Feature, FeatureList, GuestsInput, GuestsLabel, Image, ImageContainer, InfoRow, Location, PageContainer, Title, VenueInfoContainer } from "../styles/Venue";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
-import Calendar from "react-calendar";
+
 
 
 const VenuePage = () => {
@@ -87,7 +87,6 @@ const VenuePage = () => {
 
 
   const handleBooking = async () => {
-    // Add validation before proceeding to booking
     if (startDate === null || endDate === null || numGuests === null) {
       alert("Please fill in all the details before booking.");
       return;
@@ -100,7 +99,6 @@ const VenuePage = () => {
       venueId: venue.id
     };
 
-    console.log(bookingInfo);
     
   const response = await fetch('https://api.noroff.dev/api/v1/holidaze/bookings', {
       method: 'POST',
@@ -243,6 +241,8 @@ const VenuePage = () => {
           </SubmitButton>
         ) : null}
 
+
+
         {localStorage.getItem("token") ? (
         <>
           <h3>Book this Venue</h3>
@@ -270,7 +270,7 @@ const VenuePage = () => {
           {startDate && <div>Start Date: {startDate.toDateString()}</div>}
           {endDate && <div>End Date: {endDate.toDateString()}</div>}
         </>
-      ) : null}
+        ) : null}
         
 
         </VenueInfoContainer>
