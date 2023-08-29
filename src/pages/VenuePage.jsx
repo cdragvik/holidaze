@@ -22,7 +22,7 @@ const VenuePage = () => {
   const [showBookings, setShowBookings] = useState(false);
 
   useEffect(() => {
-    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true&_customer=true`)
+    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
       .then(response => response.json())
       .then(parsed => setVenue(parsed));
   }, 
@@ -30,7 +30,7 @@ const VenuePage = () => {
 
 
   useEffect(() => {
-    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true&_customer=true`)
+    fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
       .then(response => response.json())
       .then(parsed => {
         console.log('Parsed data:', parsed);  // Log here
@@ -103,7 +103,7 @@ const VenuePage = () => {
     };
 
     
-  const response = await fetch('https://api.noroff.dev/api/v1/holidaze/bookings?_owner=true&_bookings=true&_customer=true', {
+  const response = await fetch('https://api.noroff.dev/api/v1/holidaze/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

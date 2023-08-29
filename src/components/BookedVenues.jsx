@@ -50,8 +50,8 @@ function BookedVenues() {
                     <CardImage src={booking.venue?.media} ></CardImage>
                     <CardContent>
                         <CardTitle>{booking.venue?.name}</CardTitle>
-                        <p>From: {booking.dateFrom}</p>
-                        <p>To: {booking.dateTo}</p>
+                        <p>From: {new Date (booking.dateFrom).toLocaleDateString()}</p>
+                        <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
                         <p>Number of guests: {booking.guests}</p>
   
                     </CardContent>
