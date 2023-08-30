@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { StyledForm, StyledInput, SubmitButton } from '../styles/Forms';
+import { RegistrationSuccess, SecondaryButton, StyledForm, StyledInput, SubmitButton } from '../styles/Forms';
 import { useRegisterForm } from '../handlers/RegisterHandlers';
 
 const RegisterPage = () => {
@@ -16,22 +16,34 @@ const RegisterPage = () => {
     venueManager,
     setVenueManager,
     handleRegister,
+    isRegistered,
+    validationErrors,
   } = useRegisterForm();
 
   return (
     <Layout>
       <StyledForm onSubmit={handleRegister}>
-        <h1>Register</h1>
+
+        <h1>Register account</h1>
+
         <StyledInput type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Username" required />
         <StyledInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
         <StyledInput type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" minLength="8" required />
         <StyledInput type="url" value={avatar} onChange={(e) => setAvatar(e.target.value)} placeholder="Avatar URL" />
+        
         <div>
           <label>Register as Venue Manager:</label>
           <input type="checkbox" checked={venueManager} onChange={(e) => setVenueManager(e.target.checked)} />
         </div>
-        <SubmitButton type="submit">Register</SubmitButton>
-        <p>Already have an account?</p><a href='/login'> Login here</a>
+
+        {validationErrors.length > 0 && <div>{validationErrors.map((error, index) => <div key={index}>{error}</div>)}</div>}
+
+        {!isRegistered && <SubmitButton>Register</SubmitButton>}
+
+        {isRegistered && <RegistrationSuccess>Registration successful! Welcome to Holidaze. Proceed to <SubmitButton><a href="/login">Login</a></SubmitButton></RegistrationSuccess>}
+
+        {!isRegistered && <div>Already have an account? <SecondaryButton><a href='/login'> Login here</a></SecondaryButton></div>}
+
       </StyledForm>
     </Layout>
   );

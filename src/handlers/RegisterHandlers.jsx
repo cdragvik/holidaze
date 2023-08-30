@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { BASE_URL } from '../api/Constants';
+import { useState } from "react";
 
 export const useRegisterForm = () => {
   const [name, setName] = useState('');
@@ -7,9 +6,37 @@ export const useRegisterForm = () => {
   const [password, setPassword] = useState('');
   const [avatar, setAvatar] = useState('');
   const [venueManager, setVenueManager] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([]); // Store validation errors
+
+  const validateForm = () => {
+    const errors = [];
+
+    // Validate email
+    if (!email.includes('@')) {
+      errors.push('Invalid email format.');
+    }
+
+    if (!email.endsWith('stud.noroff.no')) {
+      errors.push('Users must register with a stud.noroff.no email.');
+    }
+
+    // Validate password length
+    if (password.length < 8) {
+      errors.push('Password must be at least 8 characters long.');
+    }
+
+    setValidationErrors(errors);
+
+    return errors.length === 0;
+  };
 
   const handleRegister = async (event) => {
     event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     const registrationData = {
       name,
@@ -31,11 +58,14 @@ export const useRegisterForm = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log('Registration successful:', responseData);
+        setIsRegistered(true);
       } else {
         console.error('Registration failed');
+        setIsRegistered(false);
       }
     } catch (error) {
       console.error('Error:', error);
+      setIsRegistered(false);
     }
   };
 
@@ -51,5 +81,7 @@ export const useRegisterForm = () => {
     venueManager,
     setVenueManager,
     handleRegister,
+    isRegistered,
+    validationErrors,
   };
 };

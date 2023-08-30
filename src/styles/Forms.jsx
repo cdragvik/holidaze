@@ -50,9 +50,24 @@ export const SubmitButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 
   &:hover {
     background-color: #213555;
+  }
+`;
+
+export const SecondaryButton = styled.button`
+  background-color: #d8c4b6b8;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: white;
   }
 `;
 
@@ -73,3 +88,8 @@ export const StyledInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
 `;
+
+
+export const RegistrationSuccess = styled.p`
+  padding-top: 20px;
+`
