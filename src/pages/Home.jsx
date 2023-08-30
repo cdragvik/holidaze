@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-import Card from "../components/VenueCard"; // Make sure to import the correct component name
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import VenueCard from "../components/VenueCard";

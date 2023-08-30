@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "../assets/holidaze-logo.png";
 import { clear, load } from "../api/storage";
 
-
 const NavBar = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #213555;
+  padding: 0 20px;
 `;
 
 const LogoImg = styled.img`
-  height: 120px;
-  padding: 20px;
-  display: flex;
-  margin: auto;
+  height: 100px;
+  padding: 10px;
 `;
 
 const Navigation = styled.nav`
@@ -33,27 +34,56 @@ const Navigation = styled.nav`
     text-decoration: none;
     font-weight: bold;
   }
+
+  @media (max-width: 768px) {
+    ul {
+      display: ${(props) => (props.open ? "block" : "none")};
+      position: absolute;
+      top: 100px;
+      right: 0;
+      width: 100%;
+      text-align: right;
+      background-color: #213555;
+      padding: 20px;
+    }
+  }
+`;
+
+const Hamburger = styled.div`
+  display: none;
+  font-size: 24px;
+  color: white;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 export default function Header() {
-  const user = load("profile"); // Load the user's profile from local storage or your authentication context
+  const [menuOpen, setMenuOpen] = useState(false);
+  const user = load("profile");
 
   const handleLogout = () => {
-    clear(); // Clear user's token and profile from local storage
-
-    // Redirect to the login page
+    clear();
     window.location.href = "/login";
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
     <NavBar>
-      <a href="/">
+      <Link to="/">
         <LogoImg src={Logo} alt="Holidaze Logo" />
-      </a>
-      <Navigation>
+      </Link>
+      <Hamburger onClick={toggleMenu}>
+        <div>☰</div>
+      </Hamburger>
+      <Navigation open={menuOpen}>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           {user ? (
             <>
@@ -68,7 +98,7 @@ export default function Header() {
             </>
           ) : (
             <li>
-              <a href="/login">Log in</a>
+              <Link to="/login">Log in</Link>
             </li>
           )}
         </ul>
