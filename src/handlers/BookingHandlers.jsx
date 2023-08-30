@@ -8,6 +8,7 @@ export const useBookingForm = (id) => {
   const [bookedDates, setBookedDates] = useState([]);
   const [selectingStartDate, setSelectingStartDate] = useState(true);
   const [numGuests, setNumGuests] = useState(1);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
@@ -55,12 +56,11 @@ export const useBookingForm = (id) => {
     });
 
     if (response.ok) {
-      alert('Booking successful');
-      window.location.reload();
-    } else {
-      alert('Booking failed');
-    }
-  };
+        setShowModal(true); // Show the modal when booking is successful
+      } else {
+        alert('Booking failed');
+      }
+    };
 
   const isBooked = date => {
     const formattedDate = new Date(date);
@@ -109,5 +109,7 @@ export const useBookingForm = (id) => {
     isBooked,
     handleCalendarClick,
     tileClassName,
+    showModal,
+    setShowModal,
   };
 };
