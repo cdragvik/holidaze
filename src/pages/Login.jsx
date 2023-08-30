@@ -1,8 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { StyledForm, StyledInput, SubmitButton } from '../styles/Forms';
+import { SecondaryButton, StyledForm, StyledInput, SubmitButton } from '../styles/Forms';
 import { useLoginForm } from '../handlers/LoginHandlers';
-
 
 const LoginPage = () => {
   const {
@@ -11,6 +10,7 @@ const LoginPage = () => {
     loginPassword,
     setLoginPassword,
     handleLogin,
+    validationErrors,
   } = useLoginForm();
 
   return (
@@ -31,9 +31,11 @@ const LoginPage = () => {
           placeholder="Password"
           required
         />
+        
+        {validationErrors.length > 0 && <div>{validationErrors.map((error, index) => <div key={index}>{error}</div>)}</div>}
+
         <SubmitButton type="submit">Login</SubmitButton>
-        <p>Don't have an account?</p>
-        <a href='/register'>Register here</a>
+        <p>Don't have an account? <SecondaryButton><a href='/register'>Register here</a></SecondaryButton></p>
       </StyledForm>
     </Layout>
   );

@@ -20,31 +20,29 @@ export async function register(profile) {
 }
 
 export async function login(profile) {
-    const loginURL = BASE_URL + "/auth/login";
-    const body = JSON.stringify(profile);
-  
-    try {
-      const response = await fetch(loginURL, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "post",
-        body,
-      });
-  
-      const responseData = await response.json();
-  
-      if (response.ok) {
-        const { accessToken, ...user } = responseData;
-        localStorage.setItem("token", accessToken);
-        localStorage.setItem("profile", JSON.stringify(user));
-      } else {
-        console.error("Login failed");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-    }
+  const loginURL = BASE_URL + "/auth/login";
+  const body = JSON.stringify(profile);
+
+  const response = await fetch(loginURL, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "post",
+    body,
+  });
+
+  const responseData = await response.json();
+
+  if (response.ok) {
+    const { accessToken, ...user } = responseData;
+    localStorage.setItem("token", accessToken);
+    localStorage.setItem("profile", JSON.stringify(user));
+    return responseData;
+  } else {
+    throw new Error(responseData.message || "Login failed");
+  }
 }
+
 
 export function logout() {
   localStorage.removeItem("token");
