@@ -65,6 +65,7 @@ const BookingForm = () => {
 
     if (response.ok) {
       alert('Booking successful');
+      window.location.reload();
     } else {
       alert('Booking failed');
     }
