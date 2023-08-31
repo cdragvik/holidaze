@@ -5,6 +5,10 @@ export const Card = styled.div`
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 1000px;
+  max-height: 80vh; // Set the maximum height
+  overflow-y: auto; // Enable vertical scrolling
 
 `;
 

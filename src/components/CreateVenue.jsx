@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../api/Constants';
-import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, SubmitButton, TextArea } from '../styles/Forms';
+import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, SecondaryButton, SubmitButton, TextArea } from '../styles/Forms';
 
-const VenueCreationForm = ({ onSubmitVenue }) => {
+const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
     const initialVenueState = {
       name: '',
       description: '',
@@ -33,7 +33,11 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
           ...prevVenue,
           [field]: value,
         }));
-      };
+    };
+
+    const handleCancel = () => {
+      setShowVenueCreationForm(false);  // Hide the form
+    };
   
     const handleCheckboxChange = (field) => {
       setNewVenue((prevVenue) => ({
@@ -195,8 +199,9 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
       </FormGroup>
       
       <FormGroup>
-        <SubmitButton type="submit">Create Venue</SubmitButton>
-      </FormGroup>
+          <SubmitButton type="submit">Create Venue</SubmitButton>
+          <SecondaryButton type="button" onClick={handleCancel}>Cancel</SecondaryButton>
+        </FormGroup>
     
     </form>
     </Card>
