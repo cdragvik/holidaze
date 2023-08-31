@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../api/Constants';
-import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, SecondaryButton, SubmitButton, TextArea } from '../styles/Forms';
+import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, ModalBackground, ModalContainer, SecondaryButton, SubmitButton, TextArea } from '../styles/Forms';
+import Modal from './Modal';
 
 const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
     const initialVenueState = {
@@ -24,7 +25,8 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
     };
   
     const [newVenue, setNewVenue] = useState(initialVenueState);
-  
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
     const handleVenueInputChange = (field, value) => {
         if (field === 'price' || field === 'maxGuests') {
           value = isNaN(value) ? 0 : value; // Check for NaN and set to 0 if it is NaN
@@ -51,6 +53,7 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
   
     const handleSubmitVenue = async (event) => {
       event.preventDefault();
+      setShowSuccessModal(true);
   
       try {
         const createURL = `${BASE_URL}/venues`;
@@ -69,6 +72,11 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
           const createdVenue = await response.json();
           onSubmitVenue(createdVenue);
           setNewVenue(initialVenueState);
+          setShowVenueCreationForm(false);  // Close the venue creation form
+    
+          console.log("About to set showSuccessModal to true");  // Debugging
+          setShowSuccessModal(true);  // Show the success modal
+          console.log("Set showSuccessModal to true");  // Debugging
         } else {
           console.error('Failed to create venue');
         }
@@ -203,7 +211,7 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
           <SecondaryButton type="button" onClick={handleCancel}>Cancel</SecondaryButton>
         </FormGroup>
     
-    </form>
+    </form> 
     </Card>
   );
 };

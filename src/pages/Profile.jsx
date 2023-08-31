@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { load } from '../api/storage';
 import Layout from '../components/Layout';
 import VenueCreationForm from '../components/CreateVenue';
@@ -14,45 +14,66 @@ const ProfilePage = () => {
   const { name } = useParams();
   const [profile, setProfile] = useState(null);
   const [showUpdateAvatarPage, setShowUpdateAvatarPage] = useState(false);
-  const [showVenueCreationForm, setShowVenueCreationForm] = useState(false); 
-  
+  const [showVenueCreationForm, setShowVenueCreationForm] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const onSubmitVenue = (createdVenue) => {
+    setShowSuccessModal(true);
+    console.log("Created Venue:", createdVenue);
+  };
 
   useEffect(() => {
-    const user = load('profile');  // Assuming load() fetches the profile correctly
+    const user = load('profile');
     setProfile(user);
   }, []);
-
-
-  if (!profile) {
-    return <div>Loading profile...</div>;
-  }
   
   return (
     <Layout>
       <PageContainer>
-
-      <ProfileInfo 
+        
+        <ProfileInfo 
           profile={profile} 
           setShowUpdateAvatarPage={setShowUpdateAvatarPage} 
-          showUpdateAvatarPage={showUpdateAvatarPage} />
+          showUpdateAvatarPage={showUpdateAvatarPage}/>
 
-<RightColumn>
-        {profile.venueManager && (
-          <>
-            {!showVenueCreationForm && (
-              <SubmitButton onClick={() => setShowVenueCreationForm(true)}>
-                Click here to create a new venue
-              </SubmitButton>
-            )}
-            <Modal show={showVenueCreationForm} onClose={() => setShowVenueCreationForm(false)}>
-                <VenueCreationForm setShowVenueCreationForm={setShowVenueCreationForm} />
+        <RightColumn>
+
+          {profile.venueManager && (
+            <>
+              {!showVenueCreationForm && (
+                <SubmitButton onClick={() => setShowVenueCreationForm(true)}>
+                  Click here to create a new venue
+                </SubmitButton>
+              )}
+
+              <Modal show={showVenueCreationForm} onClose={() => setShowVenueCreationForm(false)}>
+                <VenueCreationForm 
+                  setShowVenueCreationForm={setShowVenueCreationForm}
+                  onSubmitVenue={onSubmitVenue}/>
               </Modal>
-          </>
-        )}
-        {profile.venueManager && <DisplayVenues name={name} />}
-        <BookedVenues></BookedVenues>
-      </RightColumn>
+            </>
+          )}
 
+          <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
+            
+            <h3>Creation Success</h3>
+            
+            <SubmitButton onClick={() => { setShowSuccessModal(false); window.location.replace('/'); }}>
+                Browse venues
+            </SubmitButton>
+            
+            <SubmitButton onClick={() => { setShowSuccessModal(false) }}>
+              <Link to={`/profile/${profile.name}`}>See Your Managed Venues</Link>
+            </SubmitButton>
+          
+          </Modal>
+
+          {profile.venueManager && <DisplayVenues name={name} />}
+          
+          <BookedVenues></BookedVenues>
+        
+        </RightColumn>
+        
       </PageContainer>
     </Layout>
   );
