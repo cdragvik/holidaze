@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { load } from '../api/storage';
 import Layout from '../components/Layout';
 import VenueCreationForm from '../components/CreateVenue';
-import { PageContainer, RightColumn } from '../styles/Profile';
+import { LeftColumn, PageContainer, RightColumn } from '../styles/Profile';
 import { DisplayVenues } from '../components/DisplayVenues';
 import ProfileInfo from '../components/ProfileInfo';
 import BookedVenues from '../components/BookedVenues';
@@ -17,6 +17,7 @@ const ProfilePage = () => {
   const [showVenueCreationForm, setShowVenueCreationForm] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
+  
   const onSubmitVenue = (createdVenue) => {
     setShowSuccessModal(true);
     console.log("Created Venue:", createdVenue);
@@ -26,19 +27,23 @@ const ProfilePage = () => {
     const user = load('profile');
     setProfile(user);
   }, []);
+
+  if (!profile) {
+    return <div>Loading profile...</div>;
+  }
   
   return (
     <Layout>
       <PageContainer>
+        <LeftColumn>
         
         <ProfileInfo 
           profile={profile} 
           setShowUpdateAvatarPage={setShowUpdateAvatarPage} 
-          showUpdateAvatarPage={showUpdateAvatarPage}/>
-
-        <RightColumn>
-
-          {profile.venueManager && (
+          showUpdateAvatarPage={showUpdateAvatarPage}>
+        </ProfileInfo>
+        
+        {profile.venueManager && (
             <>
               {!showVenueCreationForm && (
                 <SubmitButton onClick={() => setShowVenueCreationForm(true)}>
@@ -52,7 +57,11 @@ const ProfilePage = () => {
                   onSubmitVenue={onSubmitVenue}/>
               </Modal>
             </>
-          )}
+          )}  
+
+        </LeftColumn>
+
+        <RightColumn>
 
           <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
             
@@ -69,11 +78,8 @@ const ProfilePage = () => {
           </Modal>
 
           {profile.venueManager && <DisplayVenues name={name} />}
-          
           <BookedVenues></BookedVenues>
-        
         </RightColumn>
-        
       </PageContainer>
     </Layout>
   );

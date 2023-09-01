@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BASE_URL } from '../api/Constants';
-import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, ModalBackground, ModalContainer, SecondaryButton, SubmitButton, TextArea } from '../styles/Forms';
-import Modal from './Modal';
+import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, SecondaryButton, SubmitButton, TextArea } from '../styles/Forms';
 
 const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
     const initialVenueState = {
@@ -84,9 +83,6 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
         console.error('Error creating venue:', error);
       }
     };
-
-    
-  
 
   return (
     <Card>
