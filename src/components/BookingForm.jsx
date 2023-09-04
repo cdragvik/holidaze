@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { CustomCalendar, GuestsInput, GuestsLabel } from '../styles/Venue';
+import { CustomCalendar, GuestsInput, GuestsLabel } from '../styles/Calendar';
 import { ModalBackground, ModalContainer, SubmitButton } from '../styles/Forms';
 import { useBookingForm } from '../handlers/BookingHandlers';
 import { load } from '../api/storage';
@@ -13,12 +13,7 @@ const BookingForm = () => {
     venue,
     startDate,
     endDate,
-    bookedDates,
-    selectingStartDate,
     numGuests,
-    setStartDate,
-    setEndDate,
-    setSelectingStartDate,
     setNumGuests,
     handleBooking,
     isBooked,
@@ -34,7 +29,7 @@ const BookingForm = () => {
 
   return (
     <div>
-      {/* Show login prompt if the user is not logged in */}
+
       {!localStorage.getItem('token') && (
         <>
           <CustomCalendar
@@ -48,7 +43,6 @@ const BookingForm = () => {
         </>
       )}
 
-      {/* Show booking form if the user is logged in and not the venue owner */}
       {localStorage.getItem('token') && profile?.email !== venue?.owner?.email && (
         <>
           <h3>Book this Venue</h3>
@@ -72,8 +66,7 @@ const BookingForm = () => {
           {endDate && <div>End Date: {endDate.toDateString()}</div>}
         </>
       )}
-
-      {/* Show modal if booking is successful */}
+      
       {showModal && (
         <ModalBackground>
           <ModalContainer>
