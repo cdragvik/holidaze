@@ -1,4 +1,3 @@
-// useBookingForm.js
 import { useEffect, useState } from "react";
 
 export const useBookingForm = (id) => {
@@ -32,6 +31,13 @@ export const useBookingForm = (id) => {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (localStorage.getItem('showSuccessModal') === 'true') {
+      setShowModal(true);
+      localStorage.removeItem('showSuccessModal');  // Clear the flag
+    }
+  }, []);
+
   const handleBooking = async () => {
     if (startDate === null || endDate === null || numGuests === null) {
       alert("Please fill in all the details before booking.");
@@ -56,10 +62,11 @@ export const useBookingForm = (id) => {
     });
 
     if (response.ok) {
-        setShowModal(true); // Show the modal when booking is successful
-      } else {
-        alert('Booking failed');
-      }
+      localStorage.setItem('showSuccessModal', 'true');  // Set the flag before reloading
+      window.location.reload();
+    } else {
+      alert('Booking failed');
+    }
     };
 
   const isBooked = date => {
