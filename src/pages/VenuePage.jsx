@@ -6,6 +6,7 @@ import VenueInfo from "../components/VenueInfo";
 import ManageVenue from "../components/ManageVenue";
 import BookingForm from "../components/BookingForm";
 import { useParams } from "react-router-dom";
+import { Container } from "../styles/Cards";
 
 const VenuePage = () => {
   const { id } = useParams();
@@ -23,14 +24,15 @@ const VenuePage = () => {
   return (
     <Layout>
       <PageContainer>
+        <Container>
 
-      <VenueInfo venue={venue} />
+          <VenueInfo venue={venue} />
 
-      <ManageVenue venue={venue}></ManageVenue>
+          <ManageVenue venue={venue}></ManageVenue>
 
-      <BookingForm venue={venue}></BookingForm>
+          <BookingForm venue={venue}></BookingForm>
 
-        
+        </Container>
       </PageContainer>
     </Layout>
   );

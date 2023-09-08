@@ -17,6 +17,8 @@ export const ContentContainer = styled.div`
 export const CardWrapper = styled(Link)`
   display: flex;
   justify-content: center;
+  text-decoration: none;
+  color: black;
 `;
 
 const SearchBar = styled.input`
@@ -33,6 +35,7 @@ const SearchBar = styled.input`
 const Heading = styled.h1`
     text-align: center;
     font-size: 40px;
+    color: #fff;
 `
 
 

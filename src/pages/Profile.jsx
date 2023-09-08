@@ -9,6 +9,7 @@ import ProfileInfo from '../components/ProfileInfo';
 import BookedVenues from '../components/BookedVenues';
 import { SubmitButton } from '../styles/Forms';
 import Modal from '../components/Modal';
+import { Container } from '../styles/Cards';
 
 const ProfilePage = () => {
   const { name } = useParams();
@@ -35,8 +36,10 @@ const ProfilePage = () => {
   return (
     <Layout>
       <PageContainer>
-        <LeftColumn>
+
         
+        <LeftColumn>
+        <Container>
         <ProfileInfo 
           profile={profile} 
           setShowUpdateAvatarPage={setShowUpdateAvatarPage} 
@@ -50,7 +53,7 @@ const ProfilePage = () => {
                   Click here to create a new venue
                 </SubmitButton>
               )}
-
+ 
               <Modal show={showVenueCreationForm} onClose={() => setShowVenueCreationForm(false)}>
                 <VenueCreationForm 
                   setShowVenueCreationForm={setShowVenueCreationForm}
@@ -58,10 +61,11 @@ const ProfilePage = () => {
               </Modal>
             </>
           )}  
-
+        </Container>
         </LeftColumn>
-
+        
         <RightColumn>
+          <Container>
 
           <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
             
@@ -79,6 +83,7 @@ const ProfilePage = () => {
 
           {profile.venueManager && <DisplayVenues name={name} />}
           <BookedVenues></BookedVenues>
+          </Container>
         </RightColumn>
       </PageContainer>
     </Layout>
