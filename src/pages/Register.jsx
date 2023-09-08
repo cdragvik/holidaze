@@ -1,7 +1,8 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { RegistrationSuccess, SecondaryButton, StyledForm, StyledInput, SubmitButton } from '../styles/Forms';
+import { RegistrationSuccess, StyledForm, StyledInput } from '../styles/FormsStyle';
 import { useRegisterForm } from '../handlers/RegisterHandlers';
+import { SecondaryButton, SubmitButton } from '../styles/ButtonStyle';
 
 const RegisterPage = () => {
   const {

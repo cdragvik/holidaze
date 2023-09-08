@@ -1,5 +1,5 @@
 import React from "react";
-import { VenueInfoContainer, Location, Title, ImageContainer, InfoRow, FeatureList, Image, Feature } from "../styles/Venue";
+import { VenueInfoContainer, Location, Title, ImageContainer, InfoRow, FeatureList, Image, Feature } from "../styles/VenuePageStyle";
 
 const VenueInfo = ({ venue }) => {
   return (

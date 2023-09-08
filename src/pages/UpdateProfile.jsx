@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { save } from '../api/storage';
-import { StyledInput, SubmitButton } from '../styles/Forms';
+import { StyledInput } from '../styles/FormsStyle';
+import { SubmitButton } from '../styles/ButtonStyle';
 
 const UpdateAvatarPage = ({ profile, onUpdateAvatar }) => {
   const [newAvatar, setNewAvatar] = useState('');

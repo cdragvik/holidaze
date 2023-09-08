@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { VenuesContainer } from "../styles/Profile";
+import { VenuesContainer } from "../styles/ProfileStyle";
 import { CardWrapper } from "../pages/Home";
 import { CardContainer, CardContent, CardImage, CardTitle } from "../styles/Cards";
 

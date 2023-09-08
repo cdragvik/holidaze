@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { load } from "../api/storage";
-import { Card, FormGroup, Input, Label, SubmitButton, TextArea } from "../styles/Forms";
+import { Card, FormGroup, Input, Label, TextArea } from "../styles/FormsStyle";
 import { StyledTable } from "../styles/Calendar";
+import { SubmitButton } from "../styles/ButtonStyle";
 
 
 const ManageVenue = () => {

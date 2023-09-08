@@ -3,13 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import { load } from '../api/storage';
 import Layout from '../components/Layout';
 import VenueCreationForm from '../components/CreateVenue';
-import { LeftColumn, PageContainer, RightColumn } from '../styles/Profile';
+import { LeftColumn, PageContainer, RightColumn } from '../styles/ProfileStyle';
 import { DisplayVenues } from '../components/DisplayVenues';
 import ProfileInfo from '../components/ProfileInfo';
 import BookedVenues from '../components/BookedVenues';
-import { SubmitButton } from '../styles/Forms';
 import Modal from '../components/Modal';
 import { Container } from '../styles/Cards';
+import { SubmitButton } from '../styles/ButtonStyle';
 
 const ProfilePage = () => {
   const { name } = useParams();

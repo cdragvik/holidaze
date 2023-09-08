@@ -15,7 +15,6 @@ export const CardContainer = styled.div`
   }
 `;
 
-
 export const Container = styled.div`
   background-color: #fff;
   padding: 20px;

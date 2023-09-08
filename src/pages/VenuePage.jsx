@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { PageContainer } from "../styles/Venue";
+import { PageContainer } from "../styles/VenuePageStyle";
 import "react-datepicker/dist/react-datepicker.css";
 import VenueInfo from "../components/VenueInfo";
 import ManageVenue from "../components/ManageVenue";

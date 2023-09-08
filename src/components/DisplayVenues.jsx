@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../api/Constants';
 import VenueCard from '../components/VenueCard';
-import { VenuesContainer } from '../styles/Profile';
+import { VenuesContainer } from '../styles/ProfileStyle';
 import { CardWrapper } from '../pages/Home';
 
 export const DisplayVenues = ({ name }) => {

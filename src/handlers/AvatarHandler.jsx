@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
-import { SubmitButton } from '../styles/Forms';
 import UpdateAvatarPage from '../pages/UpdateProfile';
+import { SubmitButton } from '../styles/ButtonStyle';
 
 export const AvatarHandler = ({ profile, setShowUpdateAvatarPage, showUpdateAvatarPage }) => {
   const handleUpdateAvatar = () => {

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CustomCalendar, GuestsInput, GuestsLabel } from '../styles/Calendar';
-import { ModalBackground, ModalContainer, SubmitButton } from '../styles/Forms';
+import { ModalBackground, ModalContainer} from '../styles/FormsStyle';
 import { useBookingForm } from '../handlers/BookingHandlers';
 import { load } from '../api/storage';
+import { SubmitButton } from '../styles/ButtonStyle';
 
 const BookingForm = () => {
   const { id } = useParams();

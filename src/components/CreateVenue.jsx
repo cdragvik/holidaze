@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BASE_URL } from '../api/Constants';
-import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, SecondaryButton, SubmitButton, TextArea } from '../styles/Forms';
+import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, TextArea } from '../styles/FormsStyle';
+import { SecondaryButton, SubmitButton } from '../styles/ButtonStyle';
 
 const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
     const initialVenueState = {

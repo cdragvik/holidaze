@@ -1,7 +1,8 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { SecondaryButton, StyledForm, StyledInput, SubmitButton } from '../styles/Forms';
+import { StyledForm, StyledInput } from '../styles/FormsStyle';
 import { useLoginForm } from '../handlers/LoginHandlers';
+import { SecondaryButton, SubmitButton } from '../styles/ButtonStyle';
 
 const LoginPage = () => {
   const {
