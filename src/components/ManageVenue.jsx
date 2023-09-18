@@ -4,6 +4,7 @@ import { load } from "../api/storage";
 import { Card, FormGroup, Input, Label, TextArea } from "../styles/FormsStyle";
 import { StyledTable } from "../styles/Calendar";
 import { SubmitButton } from "../styles/ButtonStyle";
+import { handleDelete, handleEdit } from "../handlers/VenueHandlers";
 
 
 const ManageVenue = () => {
@@ -19,56 +20,7 @@ const ManageVenue = () => {
           .then(response => response.json())
           .then(parsed => setVenue(parsed));
       }, 
-      [id]);
-
-    const handleDelete = async () => {
-        const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}`
-          }
-        });
-    
-        if (response.ok) window.location.replace("/");
-    };
-    
-    const handleEdit = async (e) => {
-      e.preventDefault();
-      
-      const updatedVenue = {};
-  
-      if (e.target.name.value) updatedVenue.name = e.target.name.value;
-      if (e.target.description.value) updatedVenue.description = e.target.description.value;
-      if (e.target.media.value) updatedVenue.media = e.target.media.value.split(',');
-      if (e.target.price.value) updatedVenue.price = parseFloat(e.target.price.value);
-      if (e.target.maxGuests.value) updatedVenue.maxGuests = parseInt(e.target.maxGuests.value);
-  
-      const location = {};
-      if (e.target.address.value) location.address = e.target.address.value;
-      if (e.target.city.value) location.city = e.target.city.value;
-      if (e.target.country.value) location.country = e.target.country.value;
-  
-      if (Object.keys(location).length > 0) updatedVenue.location = location;
-  
-      const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify(updatedVenue),
-      });
-  
-      if (response.ok) {
-        const updatedVenue = await response.json();
-        setVenue(updatedVenue);
-        setIsEditing(false);
-      } else {
-        console.error("Failed to update venue");
-      }
-  };
-  
-    
+    [id]);
 
     return (
 
@@ -76,9 +28,7 @@ const ManageVenue = () => {
 
         {isEditing ? (
 
-
-        
-        <form onSubmit={handleEdit}>
+        <form onSubmit={(e) => handleEdit(e, id, setVenue, setIsEditing)}>
           <Card>
             <FormGroup>
               <Label>Name:</Label>
@@ -117,15 +67,13 @@ const ManageVenue = () => {
         </Card>
         </form>
       ) : null}
-    
       
     {profile?.email === venue?.owner?.email ? (
       <>
-        <SubmitButton onClick={handleDelete}>Delete Venue</SubmitButton>
+        <SubmitButton onClick={() => handleDelete(id)}>Delete Venue</SubmitButton>
         <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
-      
-      
-      <SubmitButton onClick={() => setShowBookings(!showBookings)}>
+        
+        <SubmitButton onClick={() => setShowBookings(!showBookings)}>
           {showBookings ? "Hide Bookings" : "Show Bookings"}
         </SubmitButton>
         
