@@ -10,6 +10,7 @@ import BookedVenues from '../components/BookedVenues';
 import Modal from '../components/Modal';
 import { Container } from '../styles/Cards';
 import { SubmitButton } from '../styles/ButtonStyle';
+import { ModalContainer } from '../styles/FormsStyle';
 
 const ProfilePage = () => {
   const { name } = useParams();

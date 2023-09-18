@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { load } from "../api/storage";
-import { Card, FormGroup, Input, Label, TextArea } from "../styles/FormsStyle";
+import { Card, FormGroup, Label, StyledInput, TextArea } from "../styles/FormsStyle";
 import { StyledTable } from "../styles/Calendar";
 import { SubmitButton } from "../styles/ButtonStyle";
 import { handleDelete, handleEdit } from "../handlers/VenueHandlers";
@@ -27,11 +27,11 @@ const ManageVenue = () => {
 
         {isEditing ? (
 
-        <form onSubmit={(e) => handleEdit(e, id, setVenue, setIsEditing)}>
-          <Card>
+        <Card onSubmit={(e) => handleEdit(e, id, setVenue, setIsEditing)}>
+          
             <FormGroup>
               <Label>Name:</Label>
-              <Input type="text" name="name" defaultValue={venue?.name} />
+              <StyledInput type="text" name="name" defaultValue={venue?.name} />
             </FormGroup>
             <FormGroup>
               <Label>Description:</Label>
@@ -39,32 +39,32 @@ const ManageVenue = () => {
           </FormGroup>
           <FormGroup>
               <Label>Images:</Label>
-              <Input type="text" name="media" defaultValue={venue?.media}></Input>
+              <StyledInput type="text" name="media" defaultValue={venue?.media}></StyledInput>
             </FormGroup>
             <FormGroup>
               <Label>Price:</Label>
-              <Input type="number" name="price" defaultValue={venue.price}></Input>
+              <StyledInput type="number" name="price" defaultValue={venue.price}></StyledInput>
             </FormGroup>
             <FormGroup>
               <Label>Max Guests:</Label>
-              <Input type="number" name="maxGuests" defaultValue={venue.maxGuests}></Input>
+              <StyledInput type="number" name="maxGuests" defaultValue={venue.maxGuests}></StyledInput>
             </FormGroup>
             <FormGroup>
               <Label>Address:</Label>
-              <Input type="text" name="address" defaultValue={venue.location.address}></Input>
+              <StyledInput type="text" name="address" defaultValue={venue.location.address}></StyledInput>
             </FormGroup>
             <FormGroup>
               <Label>City:</Label>
-              <Input type="text" name="city" defaultValue={venue.location.city}></Input>
+              <StyledInput type="text" name="city" defaultValue={venue.location.city}></StyledInput>
             </FormGroup>
             <FormGroup>
               <Label>Country:</Label>
-              <Input type="text" name="country" defaultValue={venue.location.country}></Input>
+              <StyledInput type="text" name="country" defaultValue={venue.location.country}></StyledInput>
             </FormGroup>  
               <SubmitButton type="submit">Update Venue</SubmitButton>
               <SubmitButton type="button" onClick={() => setIsEditing(false)}>Cancel</SubmitButton>
         </Card>
-        </form>
+        
       ) : null}
       
       {profile?.email === venue?.owner?.email ? (

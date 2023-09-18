@@ -17,7 +17,7 @@ const LoginPage = () => {
   return (
     <Layout>
       <StyledForm onSubmit={handleLogin}>
-        <h1>Login</h1>
+        <h1 style={{ textAlign: 'center', fontSize: '2rem', marginBottom: '1rem' }}>Login</h1>
         <StyledInput
           type="email"
           value={loginEmail}
@@ -36,7 +36,7 @@ const LoginPage = () => {
         {validationErrors.length > 0 && <div>{validationErrors.map((error, index) => <div key={index}>{error}</div>)}</div>}
 
         <SubmitButton type="submit">Login</SubmitButton>
-        <p>Don't have an account? <SecondaryButton><a href='/register'>Register here</a></SecondaryButton></p>
+        <p style={{ textAlign: 'center' }}>Don't have an account? <SecondaryButton><a href='/register'>Register here</a></SecondaryButton></p>
       </StyledForm>
     </Layout>
   );

@@ -6,6 +6,7 @@ const StyledFooter = styled.footer`
     color: white;
     text-align: center;
     padding: 20px;
+    margin-top: auto;
 `;
 
 function Footer() {
