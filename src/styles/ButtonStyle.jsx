@@ -9,6 +9,7 @@ export const SubmitButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 10px;
+  margin-right: 10px;
 
   &:hover {
     background-color: #213555;

@@ -41,13 +41,13 @@ export const InfoRow = styled.div`
 
 export const FeatureList = styled.div`
   display: flex;
+  border: none;
   flex-wrap: wrap;
   gap: 10px;
 `;
 
 export const Feature = styled.span`
   padding: 4px 8px;
-  border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #D8C4B6;
 `;
