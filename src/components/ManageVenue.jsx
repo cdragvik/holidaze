@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { load } from "../api/storage";
-import { Card, FormGroup, Label, StyledInput, TextArea } from "../styles/FormsStyle";
+import { Card, FormGroup, Label, ModalBackground, ModalContainer, StyledInput, TextArea } from "../styles/FormsStyle";
 import { StyledTable } from "../styles/Calendar";
 import { SubmitButton } from "../styles/ButtonStyle";
 import { handleDelete, handleEdit } from "../handlers/VenueHandlers";
@@ -27,8 +27,13 @@ const ManageVenue = () => {
 
         {isEditing ? (
 
+          <ModalBackground>
+            <ModalContainer>
+
+
         <Card onSubmit={(e) => handleEdit(e, id, setVenue, setIsEditing)}>
           
+          <h1>Edit Venue</h1>
             <FormGroup>
               <Label>Name:</Label>
               <StyledInput type="text" name="name" defaultValue={venue?.name} />
@@ -64,6 +69,8 @@ const ManageVenue = () => {
               <SubmitButton type="submit">Update Venue</SubmitButton>
               <SubmitButton type="button" onClick={() => setIsEditing(false)}>Cancel</SubmitButton>
         </Card>
+        </ModalContainer>
+          </ModalBackground>
         
       ) : null}
       
@@ -77,6 +84,7 @@ const ManageVenue = () => {
         </SubmitButton>
         
         {showBookings && (
+          
           <StyledTable>
             <thead>
               <tr>
