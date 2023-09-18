@@ -3,7 +3,11 @@ import { CardContainer, CardContent, CardImage, CardTitle, StarIcon } from '../s
 
 const VenueCard = ({ imageSrc, title, rating, price, city, country }) => (
   <CardContainer>
-    <CardImage src={imageSrc} alt={title} />
+    <CardImage 
+      src={imageSrc} 
+      alt={title} 
+      onError={(e) => { e.target.onerror = null; e.target.src = 'src/assets/placeholderImage.avif'; }} 
+    />
     <CardContent>
       <CardTitle>{title}</CardTitle>
       <div><StarIcon>★</StarIcon>{rating}</div>
