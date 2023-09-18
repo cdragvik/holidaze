@@ -11,11 +11,11 @@ const LayoutContainer = styled.div`
 
 const Layout = (props) => {
     return (
-        <LayoutContainer>
+        <>
             <Header></Header>
                 {props.children}
             <Footer></Footer>
-        </LayoutContainer>
+        </>
     )
 }
 
