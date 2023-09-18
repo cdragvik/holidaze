@@ -28,6 +28,7 @@ export const ArrowButton = styled.button`
   border: none;
   cursor: pointer;
   z-index: 10;
+  color: #ffffff;
 `;
 
 export const Dot = styled.span`

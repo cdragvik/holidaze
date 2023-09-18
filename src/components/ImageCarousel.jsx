@@ -5,9 +5,12 @@ import { ArrowButton, CarouselContainer, CarouselImage, Dot, TextBox } from "../
 
 const ImageCarousel = () => {
     const images = [
-        'src/assets/plane.avif',
-        'src/assets/destination1.avif',
-        'src/assets/destination2.avif',
+        'src/assets/destination4.avif', 
+        'src/assets/destination5.avif', 
+        'src/assets/destination6.avif', 
+        'src/assets/destination7.avif', 
+        'src/assets/destination8.avif'
+
       ];
       
       const [current, setCurrent] = useState(0);
@@ -25,9 +28,7 @@ const ImageCarousel = () => {
           : setCurrent(current === images.length - 1 ? 0 : current + 1);
       };
 
-
       return (
-
         <CarouselContainer>
         <TextBox>Your Perfect Getaway Awaits</TextBox>
           {images.map((image, index) => (
