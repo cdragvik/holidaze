@@ -4,3 +4,7 @@ body {
     background-color: #4F709C;
     font-family: 'Karla', sans-serif;
 }
+
+h1 {
+    margin: 0px;
+}

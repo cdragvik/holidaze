@@ -36,7 +36,6 @@ const ProfilePage = () => {
   return (
     <Layout>
       <PageContainer>
-
         
         <LeftColumn>
         <Container>
@@ -65,7 +64,6 @@ const ProfilePage = () => {
         </LeftColumn>
         
         <RightColumn>
-          <Container>
 
           <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
             
@@ -83,7 +81,7 @@ const ProfilePage = () => {
 
           {profile.venueManager && <DisplayVenues name={name} />}
           <BookedVenues></BookedVenues>
-          </Container>
+          
         </RightColumn>
       </PageContainer>
     </Layout>

@@ -34,6 +34,9 @@ export const LeftColumn = styled.div`
 
 export const RightColumn = styled.div`
   flex: 0 0 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   @media (max-width: 768px) {
     flex: 0 0 100%;

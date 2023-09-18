@@ -3,6 +3,7 @@ import { BASE_URL } from '../api/Constants';
 import VenueCard from '../components/VenueCard';
 import { VenuesContainer } from '../styles/ProfileStyle';
 import { CardWrapper } from '../pages/Home';
+import { Container } from '../styles/Cards';
 
 export const DisplayVenues = ({ name }) => {
   const [venues, setVenues] = useState([]);
@@ -28,7 +29,7 @@ export const DisplayVenues = ({ name }) => {
   }, [name]);
 
   return (
-    <div>
+    <Container>
       <h2>Your Managed Venues:</h2>
       <VenuesContainer>
         {venues.map(venue => (
@@ -45,6 +46,6 @@ export const DisplayVenues = ({ name }) => {
           </CardWrapper>
         ))}
       </VenuesContainer>
-    </div>
+    </Container>
   );
 };

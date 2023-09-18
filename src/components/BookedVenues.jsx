@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { VenuesContainer } from "../styles/ProfileStyle";
 import { CardWrapper } from "../pages/Home";
-import { CardContainer, CardContent, CardImage, CardTitle } from "../styles/Cards";
+import { CardContainer, CardContent, CardImage, CardTitle, Container } from "../styles/Cards";
 
 function BookedVenues() {
   const [bookings, setBookings] = useState([]);
@@ -41,8 +41,9 @@ function BookedVenues() {
   
   
   return (
-    <div>
+    <Container>
       <h2>Your Bookings:</h2>
+      
       <VenuesContainer>
         {bookings.map((booking, index) => (
             <CardWrapper key={index}>
@@ -61,7 +62,7 @@ function BookedVenues() {
 
         ))}
     </VenuesContainer>
-    </div>
+    </Container>
   );
 }
 
