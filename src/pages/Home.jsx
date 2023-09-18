@@ -3,6 +3,8 @@ import Layout from "../components/Layout";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import VenueCard from "../components/VenueCard";
+import ImageCarousel from "../components/ImageCarousel";
+
 
 export const ContentContainer = styled.div`
   display: grid;
@@ -32,12 +34,6 @@ const SearchBar = styled.input`
   margin: 40px auto;
 `;
 
-const Heading = styled.h1`
-    text-align: center;
-    font-size: 40px;
-    color: #fff;
-`
-
 
 const Home = () => {
   const [venues, setVenues] = useState([]);
@@ -64,17 +60,18 @@ const Home = () => {
   }, [searchTerm, venues]);
 
 
+
   return (
     <Layout>
 
-      <Heading>Your Perfect Getaway Awaits</Heading>
+      <ImageCarousel></ImageCarousel>
 
       <SearchBar
         type="text"
         placeholder="Search venues..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}/>
-
+ 
 
       <ContentContainer>
         {filteredVenues.map((venue) => (

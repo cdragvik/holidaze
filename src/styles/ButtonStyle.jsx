@@ -1,3 +1,5 @@
+import { styled } from "styled-components";
+
 export const SubmitButton = styled.button`
   background-color: #4F709C;
   color: white;

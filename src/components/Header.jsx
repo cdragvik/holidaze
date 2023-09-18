@@ -56,6 +56,7 @@ const Navigation = styled.nav`
     overflow-x: hidden;
     background-color: #213555;
     transition: width 0.3s;
+    z-index: 2;
 
     ul {
       flex-direction: column;

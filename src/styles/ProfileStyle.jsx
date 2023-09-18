@@ -42,13 +42,7 @@ export const RightColumn = styled.div`
 `;
 
 export const ProfileHeader = styled.h1`
-  font-size: 2rem;
   margin-bottom: 10px;
-`;
-
-export const ProfileEmail = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: 20px;
 `;
 
 export const AvatarImage = styled.img`

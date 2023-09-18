@@ -1,5 +1,5 @@
 import React from 'react';
-import { AvatarImage, LeftColumn, ProfileEmail, ProfileHeader } from '../styles/ProfileStyle';
+import { AvatarImage, ProfileHeader } from '../styles/ProfileStyle';
 import { AvatarHandler } from '../handlers/AvatarHandler';
 
 const ProfileInfo = ({ profile, setShowUpdateAvatarPage, showUpdateAvatarPage }) => {
