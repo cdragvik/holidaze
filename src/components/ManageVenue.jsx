@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { load } from "../api/storage";
 import { Card, FormGroup, Label, ModalBackground, ModalContainer, StyledInput, TextArea } from "../styles/FormsStyle";
 import { StyledTable } from "../styles/Calendar";
@@ -14,6 +14,18 @@ const ManageVenue = () => {
     const profile = load('profile');
     const [venue, setVenue] = useState(null);
     const [showBookings, setShowBookings] = useState(false);
+    const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+
+    const closeModal = () => {
+      setShowDeleteSuccessModal(false);
+    };
+  
+    const handleSuccessfulDelete = async () => {
+      const success = await handleDelete(id); // Assume handleDelete now returns a boolean indicating success
+      if (success) {
+        setShowDeleteSuccessModal(true);
+      }
+    };
 
     useEffect(() => {
         fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
@@ -73,10 +85,26 @@ const ManageVenue = () => {
           </ModalBackground>
         
       ) : null}
+
+{showDeleteSuccessModal && (
+        <ModalBackground>
+          <ModalContainer>
+            <h3>Venue Successfully Deleted</h3>
+            <SubmitButton onClick={() => { closeModal(); window.location.replace('/'); }}>
+              Browse More
+            </SubmitButton>
+            <SubmitButton onClick={closeModal}>
+              <Link to="/your-managed-venues-url">See Your Managed Venues</Link>
+            </SubmitButton>
+          </ModalContainer>
+        </ModalBackground>
+      )}
+
+
       
       {profile?.email === venue?.owner?.email ? (
       <>
-        <SubmitButton onClick={() => handleDelete(id)}>Delete Venue</SubmitButton>
+       <SubmitButton onClick={handleSuccessfulDelete}>Delete Venue</SubmitButton>
         <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
 
         <SubmitButton onClick={() => setShowBookings(!showBookings)}>

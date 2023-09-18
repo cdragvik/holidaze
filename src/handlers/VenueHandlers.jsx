@@ -1,12 +1,15 @@
 export const handleDelete = async (id) => {
-    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem("token")}`
-      }
-    });
-  
-    if (response.ok) window.location.replace("/");
+  const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("token")}`
+    }
+  });
+
+  if (response.ok) {
+    return true;
+  }
+  return false;
 };
   
 export const handleEdit = async (e, id, setVenue, setIsEditing) => {
