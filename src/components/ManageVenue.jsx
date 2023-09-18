@@ -23,7 +23,6 @@ const ManageVenue = () => {
     [id]);
 
     return (
-
         <div>
 
         {isEditing ? (
@@ -68,11 +67,11 @@ const ManageVenue = () => {
         </form>
       ) : null}
       
-    {profile?.email === venue?.owner?.email ? (
+      {profile?.email === venue?.owner?.email ? (
       <>
         <SubmitButton onClick={() => handleDelete(id)}>Delete Venue</SubmitButton>
         <SubmitButton onClick={() => setIsEditing(true)}>Edit Venue</SubmitButton>
-        
+
         <SubmitButton onClick={() => setShowBookings(!showBookings)}>
           {showBookings ? "Hide Bookings" : "Show Bookings"}
         </SubmitButton>
@@ -100,9 +99,7 @@ const ManageVenue = () => {
           </StyledTable>
         )}
       </>
-    ) : null}</div>
-
-
+      ) : null}</div>
 )};
 
 export default ManageVenue;

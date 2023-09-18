@@ -36,6 +36,7 @@ export const CardContent = styled.div`
 
 export const CardTitle = styled.h2`
   font-size: 1.2rem;
+  font-weight: bold;
   margin: 0;
 `;
 

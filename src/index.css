@@ -1,10 +1,11 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #4F709C;
+    background-color: #4f709ca7;
     font-family: 'Karla', sans-serif;
+    font-weight: lighter;
 }
 
-h1 {
+h1,h2 {
     margin: 0px;
 }
