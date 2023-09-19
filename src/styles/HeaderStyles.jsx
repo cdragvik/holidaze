@@ -30,7 +30,7 @@ export const Navigation = styled.nav`
   
   a {
     color: white;
-    oration: none;
+    text-decoration: none;
     border-radius: 8px;
     box-shadow: inset 0 0 0 0 #4F709C;
     padding: 10px;

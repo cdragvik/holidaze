@@ -90,7 +90,5 @@ export const ModalContainer = styled.div`
   max-width: 800px;  // Set a maximum width limit
   max-height: 80vh;  // Set maximum height
   overflow-y: auto;  // Allow vertical scrolling
-  /* ... */
+
 `;
-
-

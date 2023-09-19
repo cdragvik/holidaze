@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { CustomCalendar, GuestsInput, GuestsLabel } from '../styles/Calendar';
+import { BookingDate, BookingInfo, CustomCalendar, GuestsInput, GuestsLabel } from '../styles/Calendar';
 import { ModalBackground, ModalContainer} from '../styles/FormsStyle';
 import { useBookingForm } from '../handlers/BookingHandlers';
 import { load } from '../api/storage';
@@ -33,6 +33,7 @@ const BookingForm = () => {
 
       {!localStorage.getItem('token') && (
         <>
+        <h3>Book this Venue</h3>
           <CustomCalendar
             onClickDay={handleCalendarClick}
             tileDisabled={({ date, view }) => view === 'month' && isBooked(date)}
@@ -47,11 +48,18 @@ const BookingForm = () => {
       {localStorage.getItem('token') && profile?.email !== venue?.owner?.email && (
         <>
           <h3>Book this Venue</h3>
+
           <CustomCalendar
             onClickDay={handleCalendarClick}
             tileDisabled={({ date, view }) => view === 'month' && isBooked(date)}
-            tileClassName={tileClassName}
-          />
+            tileClassName={tileClassName}/>
+
+<BookingInfo>
+  {startDate && <BookingDate>Check in date: {startDate.toDateString()}</BookingDate>}
+  {endDate && <BookingDate>Check out date: {endDate.toDateString()}</BookingDate>}
+</BookingInfo>
+
+          
           <GuestsLabel>
             Number of Guests:
             <GuestsInput
@@ -63,8 +71,6 @@ const BookingForm = () => {
             />
           </GuestsLabel>
           <SubmitButton onClick={handleBooking}>Confirm Booking</SubmitButton>
-          {startDate && <div>Start Date: {startDate.toDateString()}</div>}
-          {endDate && <div>End Date: {endDate.toDateString()}</div>}
         </>
       )}
       
@@ -75,8 +81,8 @@ const BookingForm = () => {
             <SubmitButton onClick={() => { closeModal(); window.location.replace('/'); }}>
               Keep Browsing
             </SubmitButton>
-            <SubmitButton onClick={closeModal}>
-              <Link to={`/profile/${profile.name}`}>See Your Booked Venues</Link>
+            <SubmitButton onClick={() => { closeModal(); window.location.replace(`/profile/${profile.name}`); }}>
+              See Your Booked Venues
             </SubmitButton>
           </ModalContainer>
         </ModalBackground>
