@@ -41,9 +41,9 @@ const RegisterPage = () => {
 
         {!isRegistered && <SubmitButton>Register</SubmitButton>}
 
-        {isRegistered && <RegistrationSuccess>Registration successful! Welcome to Holidaze. Proceed to <SubmitButton><a href="/login">Login</a></SubmitButton></RegistrationSuccess>}
+        {isRegistered && <RegistrationSuccess>Registration successful! Welcome to Holidaze. Proceed to <SubmitButton onClick={() => window.location.replace('/login')}>Login</SubmitButton></RegistrationSuccess>}
 
-        {!isRegistered && <div>Already have an account? <SecondaryButton><a href='/login'> Login here</a></SecondaryButton></div>}
+        {!isRegistered && <div>Already have an account? <SecondaryButton onClick={() => window.location.replace('/login')}> Login here</SecondaryButton></div>}
 
       </StyledForm>
     </Layout>
