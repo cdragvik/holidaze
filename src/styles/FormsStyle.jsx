@@ -33,6 +33,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   box-sizing: border-box;
   width: 80%;
+  max-width: 500px;
   margin: 60px auto;
   background-color: #ffffff;
   padding: 30px;

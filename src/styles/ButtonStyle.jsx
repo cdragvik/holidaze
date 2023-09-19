@@ -24,8 +24,10 @@ export const SecondaryButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 10px;
+  text-decoration: none;
+  color: #fff;
 
   &:hover {
-    background-color: white;
+    background-color: #b5a398b8;
   }
 `;
