@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { VenuesContainer } from "../styles/ProfileStyle";
 import { CardWrapper } from "../pages/Home";
 import { CardContainer, CardContent, CardImage, CardTitle, Container } from "../styles/Cards";
+import { Link } from "react-router-dom";
+import { SecondaryButton, SubmitButton } from "../styles/ButtonStyle";
 
 function BookedVenues() {
   const [bookings, setBookings] = useState([]);
@@ -45,23 +47,27 @@ function BookedVenues() {
       <h2>Your Bookings:</h2>
       
       <VenuesContainer>
-        {bookings.map((booking, index) => (
+        {bookings.length > 0 ? (
+          bookings.map((booking, index) => (
             <CardWrapper key={index}>
-                <CardContainer>
-                    <CardImage src={booking.venue?.media} ></CardImage>
-                    <CardContent>
-                        <CardTitle>{booking.venue?.name}</CardTitle>
-                        <p>From: {new Date (booking.dateFrom).toLocaleDateString()}</p>
-                        <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
-                        <p>Number of guests: {booking.guests}</p>
-  
-                    </CardContent>
-                </CardContainer>
+              <CardContainer>
+                <CardImage src={booking.venue?.media} ></CardImage>
+                <CardContent>
+                  <CardTitle>{booking.venue?.name}</CardTitle>
+                  <p>From: {new Date (booking.dateFrom).toLocaleDateString()}</p>
+                  <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
+                  <p>Number of guests: {booking.guests}</p>
+                </CardContent>
+              </CardContainer>
             </CardWrapper>
-      
-
-        ))}
-    </VenuesContainer>
+          ))
+        ) : (
+          <div>
+            <p>You have no bookings yet.</p>
+            <p><SecondaryButton onClick={() => window.location.replace('/')}>Click here</SecondaryButton> to find a venue to book.</p>
+          </div>
+        )}
+      </VenuesContainer>
     </Container>
   );
 }
