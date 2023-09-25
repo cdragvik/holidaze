@@ -33,14 +33,3 @@ export const CardContent = styled.div`
   background-color: #ffffff;
   
 `;
-
-export const CardTitle = styled.h2`
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0;
-`;
-
-export const StarIcon = styled.span`
-  color: #D8C4B6;
-  margin-right: 4px;
-`;
