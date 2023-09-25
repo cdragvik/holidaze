@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { VenuesContainer } from "../styles/ProfileStyle";
 import { CardWrapper } from "../pages/Home";
-import { CardContainer, CardContent, CardImage, CardTitle, Container } from "../styles/Cards";
-import { Link } from "react-router-dom";
-import { SecondaryButton, SubmitButton } from "../styles/ButtonStyle";
+import { CardContainer, CardContent, CardImage, Container } from "../styles/Cards";
+import { SecondaryButton } from "../styles/ButtonStyle";
 
 function BookedVenues() {
   const [bookings, setBookings] = useState([]);
@@ -53,7 +52,7 @@ function BookedVenues() {
               <CardContainer>
                 <CardImage src={booking.venue?.media} ></CardImage>
                 <CardContent>
-                  <CardTitle>{booking.venue?.name}</CardTitle>
+                  <h3>{booking.venue?.name}</h3>
                   <p>From: {new Date (booking.dateFrom).toLocaleDateString()}</p>
                   <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
                   <p>Number of guests: {booking.guests}</p>

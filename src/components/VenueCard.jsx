@@ -1,7 +1,7 @@
 import React from 'react';
-import { CardContainer, CardContent, CardImage, CardTitle, StarIcon } from '../styles/Cards';
+import { CardContainer, CardContent, CardImage } from '../styles/Cards';
 
-const VenueCard = ({ imageSrc, title, rating, price, city, country }) => (
+const VenueCard = ({ imageSrc, title, price, city, country }) => (
   <CardContainer>
     <CardImage 
       src={imageSrc} 
