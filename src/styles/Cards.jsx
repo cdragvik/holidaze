@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const CardContainer = styled.div`
@@ -32,4 +33,12 @@ export const CardContent = styled.div`
   padding: 12px;
   background-color: #ffffff;
   
+`;
+
+
+export const CardWrapper = styled(Link)`
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
 `;

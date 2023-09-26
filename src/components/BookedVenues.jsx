@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { VenuesContainer } from "../styles/ProfileStyle";
-import { CardWrapper } from "../pages/Home";
-import { CardContainer, CardContent, CardImage, Container } from "../styles/Cards";
+import { CardContainer, CardContent, CardImage, CardWrapper, Container } from "../styles/Cards";
 import { SecondaryButton } from "../styles/ButtonStyle";
 
 function BookedVenues() {

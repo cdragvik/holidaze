@@ -6,8 +6,15 @@ export const CarouselContainer = styled.div`
   overflow: hidden;
   height: 600px;
   z-index: 1;
-  
 `;
+
+export const DotContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 
 export const CarouselImage = styled.div`
   background-image: url(${(props) => props.image});

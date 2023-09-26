@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import VenueCard from "../components/VenueCard";
 import ImageCarousel from "../components/ImageCarousel";
+import { CardWrapper } from "../styles/Cards";
 
 
 export const ContentContainer = styled.div`
@@ -14,13 +15,6 @@ export const ContentContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-`;
-
-export const CardWrapper = styled(Link)`
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-  color: black;
 `;
 
 const SearchBar = styled.input`
