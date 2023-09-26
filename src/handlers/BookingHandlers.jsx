@@ -95,10 +95,12 @@ export const useBookingForm = (id) => {
 
   const tileClassName = ({ date, view }) => {
     if (view !== "month") return;
-    if (isBooked(date)) return "booked"; // Class name for booked dates
-    if (date.toDateString() === startDate?.toDateString()) return "selected-start"; // Class name for start date
-    if (date.toDateString() === endDate?.toDateString()) return "selected-end"; // Class name for end date
+    if (date < new Date(new Date().setHours(0,0,0,0))) return "unavailable";  // Class name for unavailable dates
+    if (isBooked(date)) return "booked";  // Class name for booked dates
+    if (date.toDateString() === startDate?.toDateString()) return "selected-start";  // Class name for start date
+    if (date.toDateString() === endDate?.toDateString()) return "selected-end";  // Class name for end date
   };
+  
 
   return {
     venue,

@@ -35,7 +35,7 @@ export const CustomCalendar = styled(Calendar)`
     color: #fff;
   }
 
-  .booked {
+  .booked, .unavailable {
     background-color: #d8c4b6b8 !important;
   }
 

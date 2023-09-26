@@ -50,9 +50,13 @@ const BookingForm = () => {
           <h3>Book this Venue</h3>
 
           <CustomCalendar
-            onClickDay={handleCalendarClick}
-            tileDisabled={({ date, view }) => view === 'month' && isBooked(date)}
-            tileClassName={tileClassName}/>
+  onClickDay={handleCalendarClick}
+  tileDisabled={({ date, view }) =>
+    view === 'month' && (isBooked(date) || date < new Date(new Date().setHours(0,0,0,0)))
+  }
+  tileClassName={tileClassName}
+/>
+
 
 <BookingInfo>
   {startDate && <BookingDate>Check in date: {startDate.toDateString()}</BookingDate>}
