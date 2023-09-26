@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import VenueCard from "../components/VenueCard";
 import ImageCarousel from "../components/ImageCarousel";
 import { CardWrapper } from "../styles/Cards";
+import Loading from "../components/LoadingIndicator";
 
 
 export const ContentContainer = styled.div`
@@ -33,7 +34,7 @@ const Home = () => {
   const [venues, setVenues] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredVenues, setFilteredVenues] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     fetch("https://api.noroff.dev/api/v1/holidaze/venues")
@@ -41,8 +42,12 @@ const Home = () => {
       .then((data) => {
         setVenues(data);
         setFilteredVenues(data);
+        setIsLoading(false);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);  // Set loading to false on error too
+      });
   }, []);
 
 
@@ -66,7 +71,9 @@ const Home = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}/>
  
-
+ {isLoading ? (
+        <Loading />  // Show loading spinner if isLoading is true
+      ) : (
       <ContentContainer>
         {filteredVenues.map((venue) => (
           <CardWrapper key={venue.id} to={`/venues/${venue.id}`}>
@@ -81,7 +88,7 @@ const Home = () => {
           </CardWrapper>
         ))}
       </ContentContainer>
-
+)}
     </Layout>
   );
 };
