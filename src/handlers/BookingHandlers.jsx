@@ -15,7 +15,6 @@ export const useBookingForm = (id) => {
       .then(parsed => {
         setVenue(parsed);
         
-        // If bookings are public, populate booked dates here
         if (parsed.bookings) {
           const allBookedDates = [];
           parsed.bookings.forEach(booking => {
@@ -47,7 +46,7 @@ export const useBookingForm = (id) => {
     const bookingInfo = {
       dateFrom: startDate,
       dateTo: endDate,
-      guests: numGuests,
+      guests: Number(numGuests),
       venueId: venue.id
     };
 

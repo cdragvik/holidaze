@@ -28,9 +28,6 @@ function BookedVenues() {
         }
   
         const data = await response.json();
-        console.log(data);  // Log the response data to the console
-  
-        // Assuming the response data is an array of bookings
         setBookings(data);
   
       } catch (error) {
