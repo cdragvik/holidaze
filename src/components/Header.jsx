@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "../assets/holidaze-logo.png";
 import { clear, load } from "../api/storage";
-import { Close, Hamburger, LogoImg, NavBar, Navigation } from "../styles/HeaderStyles";
+import { Hamburger, LogoContainer, LogoImg, NavBar, Navigation } from "../styles/HeaderStyles";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,21 +20,18 @@ export default function Header() {
 
   return (
     <NavBar>
-      <Link to="/">
-        <LogoImg src={Logo} alt="Holidaze Logo" />
-      </Link>
-      <Hamburger open={menuOpen} onClick={toggleMenu}>
-        <div></div>
-        <div></div>
-        <div></div>
+      <LogoContainer>
+        <Link to="/">
+          <LogoImg src={Logo} alt="Holidaze Logo" />
+        </Link>
+      </LogoContainer>
+      <Hamburger className={menuOpen ? "active" : ""} onClick={toggleMenu}>
+        <div className="bar1"></div>
+        <div className="bar2"></div>
+        <div className="bar3"></div>
       </Hamburger>
       <Navigation open={menuOpen}>
         <ul>
-          {menuOpen && (
-            <li style={{ alignSelf: "flex-end" }}>
-              <Close onClick={toggleMenu}>X</Close>
-            </li>
-          )}
           <li>
             <Link to="/" onClick={toggleMenu}>
               Home

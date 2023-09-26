@@ -5,23 +5,44 @@ export const NavBar = styled.nav`
   flex-direction: column;
   align-items: center;
   background-color: rgb(33, 53, 85);
-  padding: 20px;
+  padding: 15px;
   position: relative;
+  min-height: 100px;  /* Set a minimum height */
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure the nav bar spans the entire width */
+    padding: 20px 10px; /* Adjust padding to create some space on the sides */
+  }
 `;
 
 export const LogoImg = styled.img`
   height: 80px;
-  padding: 15px;
+  padding: 10px;
 
 `;
 
+export const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Ensure the container spans the entire width */
+
+  @media (max-width: 768px) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
 export const Navigation = styled.nav`
   ul {
     list-style: none;
     display: flex;
+    flex-direction: row;
+    align-items: center; 
     margin: 0;
     padding: 0;
-    justify-content: center;
   }
   
   li {
@@ -57,6 +78,7 @@ export const Navigation = styled.nav`
     ul {
       flex-direction: column;
       padding-left: 15px;
+      padding-top: 80px;  /* Adjust padding-top to ensure links are displayed below the close button */
     }
 
     li {
@@ -65,21 +87,36 @@ export const Navigation = styled.nav`
   }
 `;
 
+
 export const Hamburger = styled.div`
-  display: none;
-  @media (max-width: 768px) {
-    display: block;
-    position: absolute;
-    right: 20px;
+  
+  cursor: pointer;
+  z-index: 3;
+  position: absolute;
+  right: 50px; 
+  top: 20px;
+
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 8px 0;
+    transition: 0.4s;
   }
-  div {
-    width: 25px;
-    height: 2px;
-    background-color: ${(props) => (props.open ? "transparent" : "white")};
-    margin: 6px 0;
+
+  &.active .bar1 {
+    transform: rotate(-45deg) translate(-11px, 6px);
+  }
+
+  &.active .bar2 {
+    opacity: 0;
+  }
+
+  &.active .bar3 {
+    transform: rotate(45deg) translate(-9px, -5px);
+  }
+
+  @media (min-width: 769px) {
+    display: none;
   }
 `;
-
-export const Close = styled.div`
-  color: white; 
-`; 
