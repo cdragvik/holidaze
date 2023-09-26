@@ -8,8 +8,7 @@ export const SubmitButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin: 20px;
 
   &:hover {
     background-color: #213555;

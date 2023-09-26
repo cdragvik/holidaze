@@ -31,7 +31,7 @@ export const CheckboxLabel = styled.label`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  align-items: center;
   width: 80%;
   max-width: 500px;
   margin: 60px auto;
@@ -39,19 +39,17 @@ export const StyledForm = styled.form`
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Helvetica', 'Arial', sans-serif;
 `;
 
 export const StyledInput = styled.input`
-  padding: 8px;
+  padding: 12px;
   width: 100%;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 16px;
-  line-height: 1.6;
   transition: border-color 0.2s ease-in-out;
 `;
+
 
 export const RegistrationSuccess = styled.p`
   padding-top: 20px;

@@ -8,10 +8,11 @@ function BookedVenues() {
   
   useEffect(() => {
     const fetchBookings = async () => {
-      const url = "https://api.noroff.dev/api/v1/holidaze/bookings?_customer=true&_venue=true";
       const token = localStorage.getItem("token");
       const userProfile = JSON.parse(localStorage.getItem("profile") || '{}');
-      const currentUserName = userProfile.name || 'UNKNOWN_USER';
+      const currentUserName = encodeURIComponent(userProfile.name || 'UNKNOWN_USER');
+  
+      const url = `https://api.noroff.dev/api/v1/holidaze/profiles/${currentUserName}/bookings?_customer=true&_venue=true`;
   
       try {
         const response = await fetch(url, {
@@ -20,17 +21,18 @@ function BookedVenues() {
             "Authorization": `Bearer ${token}`
           }
         });
-    
+  
         if (!response.ok) {
           console.error(`Server responded with status: ${response.status}`);
           return;
         }
-    
+  
         const data = await response.json();
-        const userBookings = data.filter(booking => booking.customer.name === currentUserName);
-    
-        setBookings(userBookings);
-    
+        console.log(data);  // Log the response data to the console
+  
+        // Assuming the response data is an array of bookings
+        setBookings(data);
+  
       } catch (error) {
         console.error("Error fetching bookings:", error);
       }
@@ -38,6 +40,7 @@ function BookedVenues() {
   
     fetchBookings();
   }, []);
+  
   
   
   return (
