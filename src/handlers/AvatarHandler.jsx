@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UpdateAvatarPage from '../pages/UpdateProfile';
+import UpdateAvatarPage from '../components/UpdateProfile';
 import { SubmitButton } from '../styles/ButtonStyle';
 import Modal from '../components/Modal';
 

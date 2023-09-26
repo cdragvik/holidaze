@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { save } from '../api/storage';
-import { StyledInput } from '../styles/FormsStyle';
+import { Card, StyledInput } from '../styles/FormsStyle';
 import { SubmitButton } from '../styles/ButtonStyle';
 
 const UpdateAvatarPage = ({ profile, onUpdateAvatar }) => {
@@ -20,6 +20,7 @@ const UpdateAvatarPage = ({ profile, onUpdateAvatar }) => {
 
   return (
     <>
+    <Card>
       <h2>Update Avatar</h2>
       <StyledInput
         type="text"
@@ -28,6 +29,8 @@ const UpdateAvatarPage = ({ profile, onUpdateAvatar }) => {
         onChange={e => setNewAvatar(e.target.value)}
       />
       <SubmitButton onClick={handleUpdateAvatar}>Update Avatar</SubmitButton>
+    </Card>
+
     </>
   );
 };
