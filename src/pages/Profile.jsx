@@ -41,10 +41,10 @@ const ProfilePage = () => {
         <LeftColumn>
         <Container>
         <ProfileInfo 
-          profile={profile} 
-          setShowUpdateAvatarPage={setShowUpdateAvatarPage} 
-          showUpdateAvatarPage={showUpdateAvatarPage}>
-        </ProfileInfo>
+              profile={profile} 
+              setShowUpdateAvatarPage={setShowUpdateAvatarPage} 
+              showUpdateAvatarPage={showUpdateAvatarPage}
+            />
         
         {profile.venueManager && (
             <>
