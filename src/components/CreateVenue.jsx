@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BASE_URL } from '../api/Constants';
-import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Label, StyledInput, TextArea } from '../styles/FormsStyle';
+import { CheckboxGroup, CheckboxLabel, Label, StyledForm, StyledInput, TextArea } from '../styles/FormsStyle';
 import { SecondaryButton, SubmitButton } from '../styles/ButtonStyle';
 
 const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
@@ -87,11 +87,10 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
 
   return (
     <>
-    <Card onSubmit={handleSubmitVenue}>
+    <StyledForm onSubmit={handleSubmitVenue}>
 
       <h2>Create a New Venue</h2>
-      
-      <FormGroup>
+ 
         <Label>Name:</Label>
         <StyledInput
           type="text"
@@ -99,24 +98,21 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
           onChange={(e) => handleVenueInputChange('name', e.target.value)}
           required
         />
-      </FormGroup>
-      <FormGroup>
+
         <Label>Description:</Label>
         <TextArea
           value={newVenue.description}
           onChange={(e) => handleVenueInputChange('description', e.target.value)}
           required
         />
-      </FormGroup>
-      <FormGroup>
+  
         <Label>Media (comma-separated URLs):</Label>
         <StyledInput
           type="text"
           value={newVenue.media.join(', ')} // Convert array to comma-separated string
           onChange={(e) => handleVenueInputChange('media', e.target.value.split(', ').filter(url => url.trim() !== ''))}
         />
-      </FormGroup>
-      <FormGroup>
+
         <Label>Price:</Label>
         <StyledInput
           type="number"
@@ -127,8 +123,7 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
           }}
           required
         />
-      </FormGroup>
-      <FormGroup>
+
         <Label>Max Guests:</Label>
         <StyledInput
           type="number"
@@ -139,33 +134,28 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
           }}
           required
         />
-      </FormGroup>
-      <FormGroup>
+
         <Label>Address:</Label>
         <StyledInput
           type="text"
           value={newVenue.location.address}
           onChange={(e) => handleVenueInputChange('location', { ...newVenue.location, address: e.target.value })}
         />
-      </FormGroup>
-      <FormGroup>
+
         <Label>City:</Label>
         <StyledInput
           type="text"
           value={newVenue.location.city}
           onChange={(e) => handleVenueInputChange('location', { ...newVenue.location, city: e.target.value })}
         />
-      </FormGroup>
-      <FormGroup>
+
         <Label>Country:</Label>
         <StyledInput
           type="text"
           value={newVenue.location.country}
           onChange={(e) => handleVenueInputChange('location', { ...newVenue.location, country: e.target.value })}
         />
-      </FormGroup>
 
-      <FormGroup>
         <CheckboxGroup>
           <CheckboxLabel>
             <input
@@ -201,14 +191,11 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
           </CheckboxLabel>
 
         </CheckboxGroup>
-      </FormGroup>
-      
-      <FormGroup>
-          <SubmitButton type="submit">Create Venue</SubmitButton>
-          <SecondaryButton type="button" onClick={handleCancel}>Cancel</SecondaryButton>
-        </FormGroup>
+
+        <SubmitButton type="submit">Create Venue</SubmitButton>
+        <SecondaryButton type="button" onClick={handleCancel}>Cancel</SecondaryButton>
     
-    </Card> 
+    </StyledForm> 
     </>
   );
 };

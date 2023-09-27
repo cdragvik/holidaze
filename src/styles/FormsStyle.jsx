@@ -1,22 +1,16 @@
 import { styled } from "styled-components";
 
-
-export const FormGroup = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-`;
-
 export const Label = styled.label`
   font-weight: bold;
   color: #213555;
 `;
 
 export const TextArea = styled.textarea`
-  width: 80%;
+  width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-bottom: 20px;
 `;
 
 export const CheckboxGroup = styled.div`
@@ -50,7 +44,6 @@ export const StyledInput = styled.input`
   transition: border-color 0.2s ease-in-out;
 `;
 
-
 export const RegistrationSuccess = styled.p`
   padding-top: 20px;
 `
@@ -65,28 +58,20 @@ export const ModalBackground = styled.div`
   z-index: 1000;
 `;
 
-export const Card = styled.form`
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 30px;
-  border-radius: 16px;
-  width: 80%;
-
-`;
-
 export const ModalContainer = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  align-items: flex-start;  // changed to flex-start
+  align-items: flex-start;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background: white; // Make background white
+  background: #4f709c; 
   z-index: 1001;
-  width: 60%;  // Set the default width to 80% of the viewport
-  max-width: 800px;  // Set a maximum width limit
-  max-height: 80vh;  // Set maximum height
-  overflow-y: auto;  // Allow vertical scrolling
-
+  width: 60%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;  
+  border-radius: 12px;
 `;

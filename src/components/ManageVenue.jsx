@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { load } from "../api/storage";
-import { Card, FormGroup, Label, ModalBackground, ModalContainer, StyledInput, TextArea } from "../styles/FormsStyle";
+import { Label, ModalBackground, ModalContainer, StyledForm, StyledInput, TextArea } from "../styles/FormsStyle";
 import { StyledTable } from "../styles/Calendar";
 import { SubmitButton } from "../styles/ButtonStyle";
 import { handleDelete, handleEdit } from "../handlers/VenueHandlers";
@@ -15,6 +15,7 @@ const ManageVenue = () => {
     const [venue, setVenue] = useState(null);
     const [showBookings, setShowBookings] = useState(false);
     const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+    const user = load("profile");
 
     const closeModal = () => {
       setShowDeleteSuccessModal(false);
@@ -43,44 +44,37 @@ const ManageVenue = () => {
             <ModalContainer>
 
 
-        <Card onSubmit={(e) => handleEdit(e, id, setVenue, setIsEditing)}>
+        <StyledForm onSubmit={(e) => handleEdit(e, id, setVenue, setIsEditing)}>
           
           <h1>Edit Venue</h1>
-            <FormGroup>
+   
               <Label>Name:</Label>
               <StyledInput type="text" name="name" defaultValue={venue?.name} />
-            </FormGroup>
-            <FormGroup>
+
               <Label>Description:</Label>
               <TextArea type="text" name="description" defaultValue={venue?.description} />
-          </FormGroup>
-          <FormGroup>
+ 
               <Label>Images:</Label>
               <StyledInput type="text" name="media" defaultValue={venue?.media}></StyledInput>
-            </FormGroup>
-            <FormGroup>
+  
               <Label>Price:</Label>
               <StyledInput type="number" name="price" defaultValue={venue.price}></StyledInput>
-            </FormGroup>
-            <FormGroup>
+   
               <Label>Max Guests:</Label>
               <StyledInput type="number" name="maxGuests" defaultValue={venue.maxGuests}></StyledInput>
-            </FormGroup>
-            <FormGroup>
+   
               <Label>Address:</Label>
               <StyledInput type="text" name="address" defaultValue={venue.location.address}></StyledInput>
-            </FormGroup>
-            <FormGroup>
+  
               <Label>City:</Label>
               <StyledInput type="text" name="city" defaultValue={venue.location.city}></StyledInput>
-            </FormGroup>
-            <FormGroup>
+
               <Label>Country:</Label>
               <StyledInput type="text" name="country" defaultValue={venue.location.country}></StyledInput>
-            </FormGroup>  
+      
               <SubmitButton type="submit">Update Venue</SubmitButton>
               <SubmitButton type="button" onClick={() => setIsEditing(false)}>Cancel</SubmitButton>
-        </Card>
+        </StyledForm>
         </ModalContainer>
           </ModalBackground>
         
@@ -94,7 +88,7 @@ const ManageVenue = () => {
               Browse More
             </SubmitButton>
             <SubmitButton onClick={closeModal}>
-              <Link to="/your-managed-venues-url">See Your Managed Venues</Link>
+              <Link to={`/profile/${user.name}`}>See Your Managed Venues</Link>
             </SubmitButton>
           </ModalContainer>
         </ModalBackground>
