@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
-import { save } from '../api/storage';
 import { StyledForm, StyledInput } from '../styles/FormsStyle';
 import { SubmitButton } from '../styles/ButtonStyle';
+import { handleUpdateAvatar } from '../handlers/AvatarHandler';
 
 const UpdateAvatarPage = ({ profile, onUpdateAvatar }) => {
   const [newAvatar, setNewAvatar] = useState('');
 
-  const handleUpdateAvatar = () => {
-    
-    profile.avatar = newAvatar;
-    save('profile', profile);
-
-    onUpdateAvatar();
-
-    window.location.href = `/profile/${profile.name}`;
-  };
+  const updateAvatarClickHandler = () => {
+    handleUpdateAvatar(newAvatar, profile, onUpdateAvatar);
+  }
 
   return (
     <>
@@ -26,7 +20,7 @@ const UpdateAvatarPage = ({ profile, onUpdateAvatar }) => {
         value={newAvatar}
         onChange={e => setNewAvatar(e.target.value)}
       />
-      <SubmitButton onClick={handleUpdateAvatar}>Update Avatar</SubmitButton>
+      <SubmitButton onClick={updateAvatarClickHandler}>Update Avatar</SubmitButton>
     </StyledForm>
     </>
   );
