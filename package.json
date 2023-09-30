@@ -2,7 +2,8 @@
   "name": "holidaze",
   "private": true,
   "version": "0.0.0",
-  "type": "module",  "homepage": "https://cdragvik.github.io/holidaze/",
+  "type": "module",
+  "homepage": "https://cdragvik.github.io/holidaze/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
