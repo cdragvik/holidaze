@@ -56,11 +56,6 @@ Outlined below are the functionalities provided by the Holidaze application, enc
     npm start
     ```
 
-## Usage
-Browse through the venues listed on the home page.
-Use the search bar to find a specific venue.
-Click on a venue to view more details, available dates, and booking options.
-
 ## Deployment
 The application is hosted on GitHub Pages and can be accessed here: https://cdragvik.github.io/holidaze
 
