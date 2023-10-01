@@ -47,7 +47,7 @@ function BookedVenues() {
       <VenuesContainer>
         {bookings.length > 0 ? (
           bookings.map((booking, index) => (
-            <CardWrapper key={index}>
+            <CardWrapper key={index} to={`/venues/${booking.venue?.id}`}>
               <CardContainer>
                 <CardImage src={booking.venue?.media} ></CardImage>
                 <CardContent>

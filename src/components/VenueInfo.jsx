@@ -21,6 +21,9 @@ const VenueInfo = ({ venue }) => {
         <InfoRow>
             <span>Max Guests:</span> <span>{venue?.maxGuests}</span>
         </InfoRow>
+        <InfoRow>
+        <span>Rating:</span><span>★ {venue?.rating}</span>
+        </InfoRow>
 
         <FeatureList>
             {venue?.meta?.wifi && <Feature>WiFi</Feature>}
