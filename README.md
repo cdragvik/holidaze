@@ -39,20 +39,22 @@ Outlined below are the functionalities provided by the Holidaze application, enc
 - Planning Application: GitHub Projects
 
 ## Setup & Installation
-Clone the repository to your local machine.
-//
-Copy code
-git clone [https://github.com/yourusername/holidaze.git](https://github.com/cdragvik/holidaze)
-cd holidaze
-Install the dependencies using npm.
-// 
-Copy code
-npm install
-Start the development server.
-// 
-Copy code
-npm start
-Now, the application should be running on http://localhost:3000.
+
+1. Clone the repository to your local machine.
+    ```bash
+    git clone https://github.com/cdragvik/holidaze
+    cd holidaze
+    ```
+
+2. Install the dependencies using npm.
+    ```bash
+    npm install
+    ```
+
+3. Start the development server.
+    ```bash
+    npm start
+    ```
 
 ## Usage
 Browse through the venues listed on the home page.
