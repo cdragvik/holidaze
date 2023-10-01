@@ -40,16 +40,16 @@ Outlined below are the functionalities provided by the Holidaze application, enc
 
 ## Setup & Installation
 Clone the repository to your local machine.
-bash
+//
 Copy code
 git clone https://github.com/yourusername/holidaze.git
 cd holidaze
 Install the dependencies using npm.
-bash
+// 
 Copy code
 npm install
 Start the development server.
-bash
+// 
 Copy code
 npm start
 Now, the application should be running on http://localhost:3000.
