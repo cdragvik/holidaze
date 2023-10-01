@@ -38,6 +38,11 @@ const BookingForm = () => {
     setShowModal(false);
   };
 
+  const handleButtonClick = () => {
+    // Use the navigate function to navigate to the desired route
+    navigate('/login');
+  };
+
   return (
     <div>
 
@@ -50,7 +55,7 @@ const BookingForm = () => {
             tileDisabled={({ date, view }) => view === 'month' && isBooked(date)}
             tileClassName={tileClassName}
           />
-          <SubmitButton to="/login">
+          <SubmitButton onClick={handleButtonClick}>
             Want to book? Login
           </SubmitButton>
         </>
