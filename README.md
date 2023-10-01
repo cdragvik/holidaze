@@ -51,7 +51,7 @@ Outlined below are the functionalities provided by the Holidaze application, enc
 
 3. Start the development server.
     ```bash
-    npm start
+    npm run dev
     ```
 
 ## Deployment
