@@ -1,9 +1,18 @@
+// Importing necessary libraries and styled components
 import React, { useState } from 'react';
 import { BASE_URL } from '../api/Constants';
 import { CheckboxGroup, CheckboxLabel, Label, StyledForm, StyledInput, TextArea } from '../styles/FormsStyle';
 import { SecondaryButton, SubmitButton } from '../styles/ButtonStyle';
 
+/**
+ * VenueCreationForm Component.
+ * 
+ * @param {Object} props - The props object.
+ * @param {Function} props.setShowVenueCreationForm - Function to toggle the display of the venue creation form.
+ * @param {Function} props.onSubmitVenue - Function to handle the submission of the venue creation form.
+ */
 const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
+    // Initial state for a new venue.
     const initialVenueState = {
       name: '',
       description: '',
@@ -23,10 +32,17 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
         country: '',
       },
     };
-  
+
+    // State hooks for venue details and success modal visibility.
     const [newVenue, setNewVenue] = useState(initialVenueState);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
+    /**
+     * Handles input changes for the venue form fields.
+     *
+     * @param {string} field - The field name.
+     * @param {any} value - The new value of the field.
+     */
     const handleVenueInputChange = (field, value) => {
         if (field === 'price' || field === 'maxGuests') {
           value = isNaN(value) ? 0 : value; // Check for NaN and set to 0 if it is NaN
@@ -37,10 +53,18 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
         }));
     };
 
+    /**
+     * Handles the cancel action to hide the venue creation form.
+     */
     const handleCancel = () => {
       setShowVenueCreationForm(false);  // Hide the form
     };
   
+    /**
+     * Handles the change event for checkboxes.
+     *
+     * @param {string} field - The checkbox field name.
+     */
     const handleCheckboxChange = (field) => {
       setNewVenue((prevVenue) => ({
         ...prevVenue,
@@ -51,6 +75,11 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
       }));
     };
   
+    /**
+     * Handles the submission of the venue creation form.
+     *
+     * @param {Object} event - The form submit event.
+     */
     const handleSubmitVenue = async (event) => {
       event.preventDefault();
       setShowSuccessModal(true);
@@ -72,11 +101,11 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
           const createdVenue = await response.json();
           onSubmitVenue(createdVenue);
           setNewVenue(initialVenueState);
-          setShowVenueCreationForm(false);  // Close the venue creation form
+          setShowVenueCreationForm(false);
     
-          console.log("About to set showSuccessModal to true");  // Debugging
-          setShowSuccessModal(true);  // Show the success modal
-          console.log("Set showSuccessModal to true");  // Debugging
+          console.log("About to set showSuccessModal to true");  
+          setShowSuccessModal(true);  
+          console.log("Set showSuccessModal to true");  
         } else {
           console.error('Failed to create venue');
         }
@@ -85,7 +114,7 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
       }
     };
 
-  return (
+    return (
     <>
     <StyledForm onSubmit={handleSubmitVenue}>
 
@@ -200,5 +229,6 @@ const VenueCreationForm = ({ setShowVenueCreationForm, onSubmitVenue }) => {
   );
 };
 
+// Exporting the VenueCreationForm component to be used in other parts of the application.
 export default VenueCreationForm;
 

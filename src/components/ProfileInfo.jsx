@@ -1,7 +1,9 @@
+// Import necessary dependencies and styles
 import React from 'react';
 import { AvatarImage, ProfileHeader } from '../styles/ProfileStyle';
 import { AvatarHandler } from '../handlers/AvatarHandler';
 
+// Define the ProfileInfo component
 const ProfileInfo = ({ profile, setShowUpdateAvatarPage, showUpdateAvatarPage }) => {
   return (
     <>
@@ -16,4 +18,5 @@ const ProfileInfo = ({ profile, setShowUpdateAvatarPage, showUpdateAvatarPage })
   );
 };
 
+// Export the ProfileInfo component
 export default ProfileInfo;
