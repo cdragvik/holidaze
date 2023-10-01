@@ -184,7 +184,7 @@ Error generating stack: `+a.message+`
   @media (min-width: 769px) {
     display: none;
   }
-`;function Dw(){const e=lc(),[t,n]=S.useState(!1),r=Co("profile"),o=()=>{xw(),e("/login")},a=()=>{n(!t)};return c.jsxs(Sw,{children:[c.jsx(Cw,{children:c.jsx(Xt,{to:"/",children:c.jsx(kw,{src:yw,alt:"Holidaze Logo"})})}),c.jsxs(_w,{className:t?"active":"",onClick:a,children:[c.jsx("div",{className:"bar1"}),c.jsx("div",{className:"bar2"}),c.jsx("div",{className:"bar3"})]}),c.jsx(Ew,{open:t,children:c.jsxs("ul",{children:[c.jsx("li",{children:c.jsx(Xt,{to:"/",onClick:a,children:"Home"})}),r?c.jsxs(c.Fragment,{children:[c.jsx("li",{children:c.jsx(Xt,{to:`/profile/${r.name}`,onClick:a,children:"Profile"})}),c.jsx("li",{children:c.jsx("a",{href:"#!",onClick:o,children:"Logout"})})]}):c.jsx("li",{children:c.jsx(Xt,{to:"/login",onClick:a,children:"Log in"})})]})})]})}I.div`
+`;function Dw(){const e=lc(),[t,n]=S.useState(!1),r=Co("profile"),o=()=>{xw(),e("/login")},a=()=>{n(!t)};return c.jsxs(Sw,{children:[c.jsx(Cw,{children:c.jsx(Xt,{to:"/",children:c.jsx(kw,{src:yw,alt:"Holidaze Logo"})})}),c.jsxs(_w,{className:t?"active":"",onClick:a,children:[c.jsx("div",{className:"bar1"}),c.jsx("div",{className:"bar2"}),c.jsx("div",{className:"bar3"})]}),c.jsx(Ew,{open:t,children:c.jsxs("ul",{children:[c.jsx("li",{children:c.jsx(Xt,{to:"/",onClick:a,children:"Home"})}),r?c.jsxs(c.Fragment,{children:[c.jsx("li",{children:c.jsx(Xt,{to:`/profile/${r.name}`,onClick:a,children:"Profile"})}),c.jsx("li",{children:c.jsx("a",{onClick:o,children:"Logout"})})]}):c.jsx("li",{children:c.jsx(Xt,{to:"/login",onClick:a,children:"Log in"})})]})})]})}I.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
