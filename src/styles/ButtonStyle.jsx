@@ -1,4 +1,5 @@
-import { styled } from "styled-components";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const SubmitButton = styled.button`
   background-color: #4F709C;
@@ -15,7 +16,7 @@ export const SubmitButton = styled.button`
   }
 `;
 
-export const SecondaryButton = styled.button`
+export const SecondaryButton = styled(Link)`
   background-color: #d8c4b6b8;
   border: none;
   border-radius: 4px;

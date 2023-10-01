@@ -39,12 +39,21 @@ const RegisterPage = () => {
 
         {validationErrors.length > 0 && <div>{validationErrors.map((error, index) => <div key={index}>{error}</div>)}</div>}
 
-        {!isRegistered && <SubmitButton>Register</SubmitButton>}
+        {!isRegistered && <SubmitButton type="submit">Register</SubmitButton>}
 
-        {isRegistered && <RegistrationSuccess>Registration successful! Welcome to Holidaze. Proceed to <SubmitButton onClick={() => window.location.replace('/login')}>Login</SubmitButton></RegistrationSuccess>}
+{isRegistered && (
+    <RegistrationSuccess>
+        Registration successful! Welcome to Holidaze. Proceed to
+        <SecondaryButton to="/login">Login</SecondaryButton>  
+    </RegistrationSuccess>
+)}
 
-        {!isRegistered && <div>Already have an account? <SecondaryButton onClick={() => window.location.replace('/login')}> Login here</SecondaryButton></div>}
-
+{!isRegistered && (
+    <p>
+        Already have an account?
+        <SecondaryButton to="/login"> Login here</SecondaryButton>
+    </p>
+)}
       </StyledForm>
     </Layout>
   );

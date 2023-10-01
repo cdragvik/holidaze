@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { load } from "../api/storage";
 import { Label, ModalBackground, ModalContainer, StyledForm, StyledInput, TextArea } from "../styles/FormsStyle";
 import { StyledTable } from "../styles/Calendar";
@@ -8,7 +8,7 @@ import { handleDelete, handleEdit } from "../handlers/VenueHandlers";
 
 
 const ManageVenue = () => {
-
+    const navigate = useNavigate(); 
     const { id } = useParams();
     const [isEditing, setIsEditing] = useState(false);
     const profile = load('profile');
@@ -81,17 +81,17 @@ const ManageVenue = () => {
       ) : null}
 
 {showDeleteSuccessModal && (
-        <ModalBackground>
-          <ModalContainer>
-            <h3>Venue Successfully Deleted</h3>
-            <SubmitButton onClick={() => { closeModal(); window.location.replace('/'); }}>
-              Browse More
-            </SubmitButton>
-            <SubmitButton onClick={closeModal}>
-              <Link to={`/profile/${user.name}`}>See Your Managed Venues</Link>
-            </SubmitButton>
-          </ModalContainer>
-        </ModalBackground>
+    <ModalBackground>
+    <ModalContainer>
+      <h3>Venue Successfully Deleted</h3>
+      <SubmitButton onClick={() => { closeModal(); navigate('/'); }}>
+        Browse More
+      </SubmitButton>
+      <SubmitButton onClick={closeModal}>
+        <Link to={`/profile/${user.name}`}>See Your Managed Venues</Link>
+      </SubmitButton>
+    </ModalContainer>
+  </ModalBackground>
       )}
 
 

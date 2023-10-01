@@ -35,8 +35,8 @@ const LoginPage = () => {
         
         {validationErrors.length > 0 && <div>{validationErrors.map((error, index) => <div key={index}>{error}</div>)}</div>}
 
-        <SubmitButton type="submit">Login</SubmitButton>
-        <p>Don't have an account? <SecondaryButton onClick={() => window.location.replace('/register')}>Register here</SecondaryButton></p>
+        <SubmitButton type='submit'>Login</SubmitButton>
+        <p>Don't have an account? <SecondaryButton to="/register">Register here</SecondaryButton></p>
       </StyledForm>
     </Layout>
   );

@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { StyledForm, StyledInput } from '../styles/FormsStyle';
 import { SubmitButton } from '../styles/ButtonStyle';
 import { handleUpdateAvatar } from '../handlers/AvatarHandler';
+import { useNavigate } from 'react-router-dom';
+import { save } from '../api/storage';
 
 const UpdateAvatarPage = ({ profile, onUpdateAvatar }) => {
   const [newAvatar, setNewAvatar] = useState('');
+  const navigate = useNavigate();
 
   const updateAvatarClickHandler = () => {
-    handleUpdateAvatar(newAvatar, profile, onUpdateAvatar);
+    profile.avatar = newAvatar;
+    save('profile', profile);
+    onUpdateAvatar();
+    navigate(`/profile/${profile.name}`);
   }
 
   return (

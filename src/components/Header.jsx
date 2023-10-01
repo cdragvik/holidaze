@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/holidaze-logo.png";
 import { clear, load } from "../api/storage";
 import { Hamburger, LogoContainer, LogoImg, NavBar, Navigation } from "../styles/HeaderStyles";
 
 export default function Header() {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const user = load("profile");
 
   const handleLogout = () => {
     clear();
-    window.location.href = "/login";
+    navigate('/login');
   };
 
   const toggleMenu = () => {
@@ -45,7 +46,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <a href="#!" onClick={handleLogout}>
+                <a onClick={handleLogout}>
                   Logout
                 </a>
               </li>

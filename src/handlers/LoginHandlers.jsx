@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { login } from '../api/auth';
+import { useNavigate } from 'react-router-dom';
 
 export const useLoginForm = () => {
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [validationErrors, setValidationErrors] = useState([]); // Store validation errors
@@ -35,7 +37,7 @@ export const useLoginForm = () => {
   
     try {
       await login(loginData); // Only proceed if this is successful
-      window.location.href = '/'; // Redirect to home page
+      navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
       setValidationErrors([error.message]); // Display the error message as a validation error

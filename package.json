@@ -1,13 +1,14 @@
 {
   "name": "holidaze",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "http://cdragvik.github.io/holidaze",
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "serve": "vite preview",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^1.5.0",
@@ -15,7 +16,7 @@
     "react-calendar": "^4.6.0",
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.16.0",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
     "vite": "^4.4.5"
   }
 }

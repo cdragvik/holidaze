@@ -6,6 +6,7 @@ import { useBookingForm } from '../handlers/BookingHandlers';
 import { load } from '../api/storage';
 import { SubmitButton } from '../styles/ButtonStyle';
 
+
 const BookingForm = () => {
   const { id } = useParams();
   const profile = load('profile');
@@ -39,7 +40,7 @@ const BookingForm = () => {
             tileDisabled={({ date, view }) => view === 'month' && isBooked(date)}
             tileClassName={tileClassName}
           />
-          <SubmitButton onClick={() => window.location.replace('/login')}>
+          <SubmitButton to="/login">
             Want to book? Login
           </SubmitButton>
         </>
@@ -82,10 +83,18 @@ const BookingForm = () => {
         <ModalBackground>
           <ModalContainer>
             <h3>Booking Success</h3>
-            <SubmitButton onClick={() => { closeModal(); window.location.replace('/'); }}>
-              Keep Browsing
-            </SubmitButton>
-            <SubmitButton onClick={() => { closeModal(); window.location.replace(`/profile/${profile.name}`); }}>
+            <SubmitButton
+        onClick={() => {
+          closeModal();
+          navigate('/');
+        }}
+      >Keep Browsing</SubmitButton>
+            <SubmitButton
+        onClick={() => {
+          closeModal();
+          navigate(`/profile/${profile.name}`);
+        }}
+      >
               See Your Booked Venues
             </SubmitButton>
           </ModalContainer>

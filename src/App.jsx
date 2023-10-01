@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import VenuePage from "./pages/VenuePage";
 import LoginForm from "./pages/Login";
@@ -8,7 +8,7 @@ import ProfilePage from "./pages/Profile";
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path="/venues/:id" element={<VenuePage></VenuePage>} />

@@ -62,7 +62,7 @@ function BookedVenues() {
         ) : (
           <div>
             <p>You have no bookings yet.</p>
-            <p><SecondaryButton onClick={() => window.location.replace('/')}>Click here</SecondaryButton> to find a venue to book.</p>
+            <p><SecondaryButton to="/">Click here</SecondaryButton> to find a venue to book.</p>
           </div>
         )}
       </VenuesContainer>

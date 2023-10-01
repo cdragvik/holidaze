@@ -11,9 +11,11 @@ import Modal from '../components/Modal';
 import { Container } from '../styles/Cards';
 import { SubmitButton } from '../styles/ButtonStyle';
 import { ModalContainer } from '../styles/FormsStyle';
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
   const { name } = useParams();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [showUpdateAvatarPage, setShowUpdateAvatarPage] = useState(false);
   const [showVenueCreationForm, setShowVenueCreationForm] = useState(false);
@@ -66,18 +68,14 @@ const ProfilePage = () => {
         
         <RightColumn>
 
-          <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
-            
+        <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
             <h3>Creation Success</h3>
-            
-            <SubmitButton onClick={() => { setShowSuccessModal(false); window.location.replace('/'); }}>
+            <SubmitButton onClick={() => { setShowSuccessModal(false); navigate('/'); }}>
                 Browse venues
             </SubmitButton>
-            
             <SubmitButton onClick={() => { setShowSuccessModal(false) }}>
               <Link to={`/profile/${profile.name}`}>See Your Managed Venues</Link>
             </SubmitButton>
-          
           </Modal>
 
           {profile.venueManager && <DisplayVenues name={name} />}
