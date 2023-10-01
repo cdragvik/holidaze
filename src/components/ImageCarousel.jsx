@@ -31,8 +31,8 @@ const ImageCarousel = () => {
 
     return (
         <CarouselContainer>
-            <TextBox>Your Perfect Getaway Awaits</TextBox>  // Displaying a text box with a message
-            <CarouselImage src={images[current]} alt="Carousel image" />  // Displaying the current image
+            <TextBox>Your Perfect Getaway Awaits</TextBox>  {/* Displaying a text box with a message*/}
+            <CarouselImage src={images[current]} alt="Carousel image" />  {/* Displaying the current image*/}
             {/* Left arrow button, with an onClick handler to update the current index */}
             <ArrowButton direction="left" onClick={() => handleArrowClick('left')}>◄</ArrowButton>
             {/* Right arrow button, with an onClick handler to update the current index */}

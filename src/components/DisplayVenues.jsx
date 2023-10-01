@@ -1,4 +1,3 @@
-// Importing necessary libraries and components
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../api/Constants';
 import VenueCard from '../components/VenueCard';
@@ -6,12 +5,24 @@ import { VenuesContainer } from '../styles/ProfileStyle';
 import { CardWrapper, Container } from '../styles/Cards';
 import { SecondaryButton } from '../styles/ButtonStyle';
 
-// Defining the DisplayVenues component which accepts a 'name' prop
+/**
+ * DisplayVenues Component
+ *
+ * This component fetches and displays venues managed by a user based on their profile name.
+ *
+ * @param {string} name - The name of the user whose managed venues need to be displayed.
+ * @returns {JSX.Element} - A React component that displays the managed venues.
+ */
 export const DisplayVenues = ({ name }) => {
   // Using the useState hook to declare a state variable 'venues' with an initial value of an empty array
   const [venues, setVenues] = useState([]);
 
-  // Defining an async function to fetch venues based on the profile name
+  /**
+   * Fetches venues based on the profile name.
+   *
+   * @param {string} name - The name of the user whose managed venues need to be fetched.
+   * @returns {Promise<Array>} - A Promise that resolves to an array of venues.
+   */
   async function getVenuesByProfile(name) {
     const url = `${BASE_URL}/profiles/${name}/venues`;  // Constructing the URL
     const token = localStorage.getItem('token');  // Getting the token from localStorage
@@ -60,4 +71,3 @@ export const DisplayVenues = ({ name }) => {
     </Container>
   );
 };
-

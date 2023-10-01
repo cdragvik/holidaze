@@ -77,7 +77,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <ImageCarousel />  // Carousel for displaying images
+      <ImageCarousel />  {/* Carousel for displaying images */}
 
       <SearchBar
         type="text"
