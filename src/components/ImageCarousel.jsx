@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ArrowButton, CarouselContainer, CarouselImage, Dot, TextBox, DotContainer } from "../styles/CarouselStyle";
-import image1 from '../assets/destination4.avif';
-import image2 from '../assets/destination5.avif';
-import image3 from '../assets/destination6.avif';
-import image4 from '../assets/destination7.avif';
-import image5 from '../assets/destination8.avif';
+import image1 from '../assets/home1.jpeg';
+import image2 from '../assets/home2.jpeg';
+import image3 from '../assets/home3.jpeg';
+import image4 from '../assets/home4.jpeg';
+
 
 const ImageCarousel = () => {
-    const images = [image1, image2, image3, image4, image5];
+    const images = [image1, image2, image3, image4];
 
     const [current, setCurrent] = useState(0);
 
