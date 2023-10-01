@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { load } from '../api/storage';
 import Layout from '../components/Layout';
 import VenueCreationForm from '../components/CreateVenue';
@@ -10,8 +10,8 @@ import BookedVenues from '../components/BookedVenues';
 import Modal from '../components/Modal';
 import { Container } from '../styles/Cards';
 import { SubmitButton } from '../styles/ButtonStyle';
-import { ModalContainer } from '../styles/FormsStyle';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/LoadingIndicator';
 
 const ProfilePage = () => {
   const { name } = useParams();
@@ -33,7 +33,7 @@ const ProfilePage = () => {
   }, []);
 
   if (!profile) {
-    return <div>Loading profile...</div>;
+    return <Loading/>;
   }
   
   return (
