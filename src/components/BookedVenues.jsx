@@ -12,6 +12,7 @@ function BookedVenues() {
   
   // State hook for managing the bookings data
   const [bookings, setBookings] = useState([]);
+  const [error, setError] = useState(null);
   
   // Effect hook to fetch the bookings data on component mount
   useEffect(() => {
@@ -39,20 +40,19 @@ function BookedVenues() {
         // Checking for unsuccessful response
         if (!response.ok) {
           console.error(`Server responded with status: ${response.status}`);
+          setError("An error occurred while fetching bookings. Please try again later."); // Set the error message
           return;
         }
-  
-        // Parsing the response data
+
         const data = await response.json();
-        // Updating the bookings state with the fetched data
         setBookings(data);
-  
+        setError(null); // Clear the error message if data fetch is successful
       } catch (error) {
-        // Handling and logging any errors during the fetch process
         console.error("Error fetching bookings:", error);
+        setError("An error occurred while fetching bookings. Please try again later."); // Set the error message
       }
     };
-  
+
     // Calling fetchBookings function to initiate data fetching
     fetchBookings();
   }, []);
@@ -60,37 +60,39 @@ function BookedVenues() {
   return (
     <Container>
       <h2>Your Bookings:</h2>
-      {/* Container for the booked venues */}
-      <VenuesContainer>
-        {/* Checking if there are any bookings */}
-        {bookings.length > 0 ? (
-          // Mapping over the bookings array to generate a list of booked venues
-          bookings.map((booking, index) => (
-            <CardWrapper key={index} to={`/venues/${booking.venue?.id}`}>
-              <CardContainer>
-                <CardImage src={booking.venue?.media}></CardImage>
-                <CardContent>
-                  <h3>{booking.venue?.name}</h3>
-                  {/* Displaying the booking details */}
-                  <p>From: {new Date (booking.dateFrom).toLocaleDateString()}</p>
-                  <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
-                  <p>Number of guests: {booking.guests}</p>
-                </CardContent>
-              </CardContainer>
-            </CardWrapper>
-          ))
-        ) : (
-          // Displaying a message and a button to book venues if there are no bookings
-          <div>
-            <p>You have no bookings yet.</p>
-            <p><SecondaryButton to="/">Click here</SecondaryButton> to find a venue to book.</p>
-          </div>
-        )}
-      </VenuesContainer>
+      {error ? ( // Display the error message if there's an error
+        <ErrorMessage message={error} />
+      ) : (
+        <VenuesContainer>
+          {/* Checking if there are any bookings */}
+          {bookings.length > 0 ? (
+            // Mapping over the bookings array to generate a list of booked venues
+            bookings.map((booking, index) => (
+              <CardWrapper key={index} to={`/venues/${booking.venue?.id}`}>
+                <CardContainer>
+                  <CardImage src={booking.venue?.media}></CardImage>
+                  <CardContent>
+                    <h3>{booking.venue?.name}</h3>
+                    {/* Displaying the booking details */}
+                    <p>From: {new Date(booking.dateFrom).toLocaleDateString()}</p>
+                    <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
+                    <p>Number of guests: {booking.guests}</p>
+                  </CardContent>
+                </CardContainer>
+              </CardWrapper>
+            ))
+          ) : (
+            // Displaying a message and a button to book venues if there are no bookings
+            <div>
+              <p>You have no bookings yet.</p>
+              <p><SecondaryButton to="/">Click here</SecondaryButton> to find a venue to book.</p>
+            </div>
+          )}
+        </VenuesContainer>
+      )}
     </Container>
   );
-}
-
+          }
 
 // Exporting BookedVenues component to be used in other parts of the application
 export default BookedVenues;
