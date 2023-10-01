@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { BookingDate, BookingInfo, CustomCalendar, GuestsInput, GuestsLabel } from '../styles/Calendar';
 import { ModalBackground, ModalContainer} from '../styles/FormsStyle';
 import { useBookingForm } from '../handlers/BookingHandlers';
 import { load } from '../api/storage';
 import { SubmitButton } from '../styles/ButtonStyle';
+import { Container } from '../styles/Cards';
 
 
 const BookingForm = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const profile = load('profile');
 
@@ -82,6 +84,7 @@ const BookingForm = () => {
       {showModal && (
         <ModalBackground>
           <ModalContainer>
+            <Container>
             <h3>Booking Success</h3>
             <SubmitButton
         onClick={() => {
@@ -97,6 +100,7 @@ const BookingForm = () => {
       >
               See Your Booked Venues
             </SubmitButton>
+            </Container>
           </ModalContainer>
         </ModalBackground>
       )}

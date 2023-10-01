@@ -61,8 +61,9 @@ export const ModalBackground = styled.div`
 export const ModalContainer = styled.div`
   position: fixed;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
