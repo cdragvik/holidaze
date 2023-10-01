@@ -42,7 +42,7 @@ Outlined below are the functionalities provided by the Holidaze application, enc
 Clone the repository to your local machine.
 //
 Copy code
-git clone https://github.com/yourusername/holidaze.git
+git clone [https://github.com/yourusername/holidaze.git](https://github.com/cdragvik/holidaze)
 cd holidaze
 Install the dependencies using npm.
 // 
@@ -60,10 +60,12 @@ Use the search bar to find a specific venue.
 Click on a venue to view more details, available dates, and booking options.
 
 ## Deployment
-The application is hosted on GitHub Pages and can be accessed here.
+The application is hosted on GitHub Pages and can be accessed here: https://cdragvik.github.io/holidaze
 
 ## Design
-Design prototypes and style tiles can be viewed on Adobe XD.
+Design prototypes and style tiles can be viewed on Adobe XD: 
+Prototype: 
+Style tile: 
 
 ## Planning
 Project planning and management was carried out using GitHub Projects.
