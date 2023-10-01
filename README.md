@@ -6,12 +6,10 @@ Holidaze is a modern accommodation booking platform aimed at providing seamless 
 2. Features
 3. Technical Stack
 4. Setup & Installation
-5. Usage
-6. Testing
-7. Deployment
-8. Design
-9. Planning
-10. Contributions
+5. Deployment
+6. Design
+7. Planning
+8. Contributions
 
 ## Goal
 The primary objective is to utilize the skills acquired over the past two years in a comprehensive project. The outcome should reflect the candidate’s overall development competency, alongside visual and technical skills.
