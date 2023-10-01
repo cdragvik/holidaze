@@ -6,7 +6,6 @@ const VenueCard = ({ imageSrc, title, price, city, country }) => (
     <CardImage 
       src={imageSrc} 
       alt={title} 
-      onError={(e) => { e.target.onerror = null; e.target.src = 'src/assets/placeholderImage.avif'; }} 
     />
     <CardContent>
       <h3>{title}</h3>

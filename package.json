@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "http://cdragvik.github.io/holidaze",
   "scripts": {
+    "dev": "vite", 
     "build": "vite build",
     "serve": "vite preview",
     "predeploy": "vite build",

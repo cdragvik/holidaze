@@ -16,16 +16,14 @@ export const DotContainer = styled.div`
 `;
 
 
-export const CarouselImage = styled.div`
-  background-image: url(${(props) => props.image});
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  transition: all 0.5s ease;
-  transform: translateX(${(props) => props.translateValue}%);
+export const CarouselImage = styled.img`
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: transform 0.5s ease-in-out;
+    object-fit: cover;
 `;
+
 
 export const ArrowButton = styled.button`
   position: absolute;

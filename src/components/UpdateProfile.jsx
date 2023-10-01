@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyledForm, StyledInput } from '../styles/FormsStyle';
 import { SubmitButton } from '../styles/ButtonStyle';
-import { handleUpdateAvatar } from '../handlers/AvatarHandler';
 import { useNavigate } from 'react-router-dom';
 import { save } from '../api/storage';
 

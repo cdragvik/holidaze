@@ -8,7 +8,7 @@ import ProfilePage from "./pages/Profile";
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path="/venues/:id" element={<VenuePage></VenuePage>} />
