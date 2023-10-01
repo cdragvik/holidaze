@@ -17,7 +17,7 @@ export const SubmitButton = styled.button`
 `;
 
 export const SecondaryButton = styled(Link)`
-  background-color: #d8c4b6b8;
+  background-color: #d8c4b6;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
@@ -28,6 +28,6 @@ export const SecondaryButton = styled(Link)`
   color: #fff;
 
   &:hover {
-    background-color: #b5a398b8;
+    background-color: #b9a99e;
   }
 `;
