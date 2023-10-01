@@ -69,13 +69,15 @@ const ProfilePage = () => {
         <RightColumn>
 
         <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
+          <Container>
             <h3>Creation Success</h3>
             <SubmitButton onClick={() => { setShowSuccessModal(false); navigate('/'); }}>
                 Browse venues
             </SubmitButton>
-            <SubmitButton onClick={() => { setShowSuccessModal(false) }}>
-              <Link to={`/profile/${profile.name}`}>See Your Managed Venues</Link>
+            <SubmitButton onClick={() => { setShowSuccessModal(false); window.location.reload() }}>
+              See Your Managed Venues
             </SubmitButton>
+            </Container>
           </Modal>
 
           {profile.venueManager && <DisplayVenues name={name} />}

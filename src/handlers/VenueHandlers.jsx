@@ -43,6 +43,7 @@ export const handleEdit = async (e, id, setVenue, setIsEditing) => {
       const updatedVenue = await response.json();
       setVenue(updatedVenue);
       setIsEditing(false);
+      window.location.reload(); 
     } else {
       console.error("Failed to update venue");
     }

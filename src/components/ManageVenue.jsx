@@ -5,6 +5,7 @@ import { Label, ModalBackground, ModalContainer, StyledForm, StyledInput, TextAr
 import { StyledTable } from "../styles/Calendar";
 import { SubmitButton } from "../styles/ButtonStyle";
 import { handleDelete, handleEdit } from "../handlers/VenueHandlers";
+import { Container } from "../styles/Cards";
 
 
 const ManageVenue = () => {
@@ -83,13 +84,15 @@ const ManageVenue = () => {
 {showDeleteSuccessModal && (
     <ModalBackground>
     <ModalContainer>
+      <Container>
       <h3>Venue Successfully Deleted</h3>
       <SubmitButton onClick={() => { closeModal(); navigate('/'); }}>
         Browse More
       </SubmitButton>
-      <SubmitButton onClick={closeModal}>
-        <Link to={`/profile/${user.name}`}>See Your Managed Venues</Link>
+      <SubmitButton onClick={() => {closeModal; navigate(`/profile/${user.name}`)}}>
+        See Your Managed Venues
       </SubmitButton>
+      </Container>
     </ModalContainer>
   </ModalBackground>
       )}
